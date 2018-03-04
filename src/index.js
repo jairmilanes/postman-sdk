@@ -55,7 +55,7 @@ const callbackFactory = (resolve, reject) => {
  * @param {String} target The request target (eg: collections)
  * @returns {Function} The request function
  */
-const call = (method, target) => {
+const requestFactory = (method, target) => {
   /**
    * Performs a request with an id parameter
    *
@@ -63,13 +63,18 @@ const call = (method, target) => {
    * @param {Object} params The params object
    * @returns {Promise<any>} A promise
    */
-  return (id = null, params = {}) =>
-    new Promise((resolve, reject) => {
+  return (id = null, params = {}) => {
+    if (typeof id === "object") {
+      params = id;
+      id = null;
+    }
+    return new Promise((resolve, reject) => {
       client[method.toLowerCase()](
         getOptions(method, target, params, id),
         callbackFactory(resolve, reject)
       );
     });
+  };
 };
 
 /**
@@ -87,7 +92,7 @@ const _post = target =>
    * @param {*} id The optional request id
    * @returns {Promise<any>} A promise
    */
-  call("POST", target);
+  requestFactory("POST", target);
 
 /**
  * Prepares a post method
@@ -104,7 +109,7 @@ const _get = target =>
    * @param {*} id The optional request id
    * @returns {Promise<any>} A promise
    */
-  call("GET", target);
+  requestFactory("GET", target);
 
 /**
  * Prepares a post method
@@ -121,7 +126,7 @@ const _put = target =>
    * @param {*} id The optional request id
    * @returns {Promise<any>} A promise
    */
-  call("PUT", target);
+  requestFactory("PUT", target);
 
 /**
  * Prepares a post method
@@ -138,7 +143,7 @@ const _destroy = target =>
    * @param {*} id The optional request id
    * @returns {Promise<any>} A promise
    */
-  call("DELETE", target);
+  requestFactory("DELETE", target);
 
 /**
  * Get's all possible methods for a target
