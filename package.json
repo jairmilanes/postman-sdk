@@ -2,6 +2,8 @@
   "name": "postman-sdk",
   "version": "1.0.0",
   "description": "A simple Postman SDK to interact with the Postman REST Api",
+  "homepage": "https://github.com/layoutzweb/postman-sdk",
+  "repository": "https://github.com/layoutzweb/postman-sdk",
   "main": "dist/index.js",
   "scripts": {
     "lint:js": "eslint lib",
@@ -71,5 +73,9 @@
   },
   "dependencies": {
     "request": "^2.83.0"
+  },
+  "publishConfig": {
+    "allow-same-version": false,
+    "git-tag-version": true
   }
 }
