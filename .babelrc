@@ -1,0 +1,24 @@
+{
+  "presets": [
+    "stage-0",
+    "jest",
+    ["env", {
+      "targets": {
+        "node": "6.10"
+      },
+      "modules": "commonjs",
+      "useBuiltIns": "usage",
+      "debug": false
+    }]
+  ],
+  "plugins": [
+    "syntax-async-functions",
+    "syntax-dynamic-import",
+    "transform-async-to-generator",
+    "transform-object-rest-spread",
+    "transform-async-to-module-method",
+    "transform-regenerator",
+    "babel-plugin-transform-ensure-ignore",
+    "transform-runtime"
+  ]
+}

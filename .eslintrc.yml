@@ -1,0 +1,45 @@
+plugins:
+  - prettier
+  - jest
+extends:
+  - eslint:recommended
+  - prettier
+  - plugin:jest/recommended
+env:
+  node: true
+  es6: true
+  jest/globals: true
+parser: babel-eslint
+rules:
+  import/no-commonjs: off
+  prettier/prettier: error
+  no-unused-vars:
+    - error
+    -
+      vars: local
+      args: none
+      ignoreRestSiblings: true
+  require-jsdoc:
+    - error
+    - require:
+        FunctionDeclaration: true
+        MethodDefinition: true
+        ClassDeclaration: true
+        ArrowFunctionExpression: true
+        FunctionExpression: true
+  valid-jsdoc:
+    - error
+    - prefer:
+        return: returns
+
+  no-console:
+    - error
+    - allow:
+      - warn
+      - error
+      - info
+
+settings:
+  import/resolver: node
+globals:
+  Blob: true
