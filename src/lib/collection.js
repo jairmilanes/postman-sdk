@@ -1,4 +1,3 @@
-import environment from './environment'
 import item from './collection-item'
 
 /**
@@ -35,4 +34,4 @@ const collection = (name, version = null) => {
 	}
 }
 
-export default { collection, environment }
+export default collection
