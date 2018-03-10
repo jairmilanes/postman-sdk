@@ -13,7 +13,8 @@ node_modules
 config.gypi
 *.orig
 package-lock.json
-
+coverage
+src
 .babelrc
 .eslintrc.yml
 .gitignore
