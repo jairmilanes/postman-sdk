@@ -1,6 +1,6 @@
 {
   "name": "postman-sdk",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A Postman SDK that provides helpers to create collections & environments and to communicate with the latest Postman REST api.",
   "homepage": "https://github.com/layoutzweb/postman-sdk",
   "repository": "https://github.com/layoutzweb/postman-sdk",
