@@ -26,6 +26,10 @@ var _environment2 = _interopRequireDefault(_environment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+if (process.env.NODE_ENV !== 'test' && !process.env.POSTMAN_API_KEY) {
+	throw new Error('Postman SDK: POSTMAN_API_KEY anv variable not found!');
+}
+
 /**
  * Get the request options
  *
@@ -35,20 +39,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {*} id The optional request id
  * @returns {object} The request config
  */
-const getOptions = (method, target, params, id) => {
-	return {
-		baseUrl: 'https://api.getpostman.com/',
-		uri: `/${target}${id ? `/${id}` : ''}`,
-		qs: method === 'GET' ? params : {},
-		body: method !== 'GET' ? params : {},
-		method,
-		json: true,
-		headers: {
-			'Content-Type': 'application/json',
-			'X-Api-Key': process.env.POSTMAN_API_KEY
-		}
-	};
-};
+const getOptions = (method, target, params, id) => ({
+	baseUrl: 'https://api.getpostman.com/',
+	uri: `/${target}${id ? `/${id}` : ''}`,
+	qs: method === 'GET' ? params : {},
+	body: method !== 'GET' ? params : {},
+	method,
+	json: true,
+	headers: {
+		'Content-Type': 'application/json',
+		'X-Api-Key': process.env.POSTMAN_API_KEY
+	}
+});
 
 /**
  * Promise callback

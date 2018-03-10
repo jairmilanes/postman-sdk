@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends2 = require('babel-runtime/helpers/extends');
@@ -28,32 +28,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *  } The operations object
  */
 const header = item => {
-	const headers = [{
-		key: 'Content-Type',
-		value: 'application/json'
-	}, {
-		key: 'Accept',
-		value: 'application/json'
-	}, {
-		key: 'Authorization',
-		value: 'Bearer {{TOKEN}}'
-	}];
-
-	item.request.headers = headers;
-
-	return (0, _extends3.default)({
-		add: add(item)
-	}, (0, _operations2.default)(headers));
+  return (0, _extends3.default)({
+    add: add(item)
+  }, (0, _operations2.default)(item.request.headers, 'key'));
 };
 
 /**
  * Add a new header
+ *
  * @param {object} item The item
  * @returns {function(key:string, value:string): number} The position of the new item
  */
-const add = item => (key, value) => item.request.headers.push({
-	key: key,
-	value: value
-});
+const add = item => (key, value) => {
+  if (typeof key === 'object') {
+    return item.request.headers.push({
+      key: key.key,
+      value: key.value
+    });
+  }
+
+  return item.request.headers.push({
+    key: key,
+    value: value
+  });
+};
 
 exports.default = header;
