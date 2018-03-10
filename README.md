@@ -1,17 +1,21 @@
-# Postman SDK
-<table>
-    <tr>
-      <td><img width="100" src="https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png"/></td>
-      <td>
-        A simple Postman SDK to interact with the Postman REST Api
-		![Travis](https://img.shields.io/travis/layoutzweb/postman-sdk.svg)
-      </td> 
-    </tr>
-</table>
+# <img width="50" src="https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png"/> Postman SDK
+A Postman SDK that provides helpers to create collections & environments and to communicate with the latest Postman REST api.
 
 ![Travis](https://img.shields.io/travis/layoutzweb/postman-sdk.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/73cc03084b25454ebaa1cd2b8f101669)](https://www.codacy.com/app/layoutzweb/postman-sdk?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=layoutzweb/postman-sdk&amp;utm_campaign=Badge_Grade)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/badges/shields.svg)](https://github.com/layoutzweb/postman-sdk)
+
+# Why a Postman SDK?
+Postman is well known for providing a great tool to perform request's against any api server, but if you look deeper there are other nice features.
+
+One of them is a Collection. A Collection holds groups of pre-configured requests, that you can access and use it with just a couple of clicks.
+The best part of this feature is that collections can be shared!
+
+But that is not all, a Collection can also be used to export full featured documentation pages for your api's, that users can visit and interact with by checking request & response examples, and parameter descriptions .
+
+Sooo I created this SDK to help me automate the generation of collections and it's proper documentation page in a Express server middleware, witch you can find here (link available soon).
+
+If you find it useful it's your's to use! Cheers!
 
 
 # How to use it
@@ -26,6 +30,7 @@ Import what you need from the SDK:
 import {Collections, Environments, User} from 'posrman-sdk'
 ```
 
+## Methods
 Use one of the collections to make an api call:
 ```javascript
 Collections.get([id])
@@ -33,6 +38,7 @@ Collections.get([id])
         console.log(response))
     .catch(err => 
         console.error(err))
+
 ```
 
 ## Available Methods
@@ -103,3 +109,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ```
+
+# Official Api Docs
+[Official Api Docs](https://docs.api.getpostman.com) 
