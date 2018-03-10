@@ -2,6 +2,10 @@ import client from 'request'
 import collection from './lib/collection'
 import environment from './lib/environment'
 
+if (process.env.NODE_ENV !== 'test' && !process.env.POSTMAN_API_KEY) {
+	throw new Error('Postman SDK: POSTMAN_API_KEY anv variable not found!')
+}
+
 /**
  * Get the request options
  *
@@ -11,20 +15,18 @@ import environment from './lib/environment'
  * @param {*} id The optional request id
  * @returns {object} The request config
  */
-const getOptions = (method, target, params, id) => {
-	return {
-		baseUrl: 'https://api.getpostman.com/',
-		uri: `/${target}${id ? `/${id}` : ''}`,
-		qs: method === 'GET' ? params : {},
-		body: method !== 'GET' ? params : {},
-		method,
-		json: true,
-		headers: {
-			'Content-Type': 'application/json',
-			'X-Api-Key': process.env.POSTMAN_API_KEY
-		}
+const getOptions = (method, target, params, id) => ({
+	baseUrl: 'https://api.getpostman.com/',
+	uri: `/${target}${id ? `/${id}` : ''}`,
+	qs: method === 'GET' ? params : {},
+	body: method !== 'GET' ? params : {},
+	method,
+	json: true,
+	headers: {
+		'Content-Type': 'application/json',
+		'X-Api-Key': process.env.POSTMAN_API_KEY
 	}
-}
+})
 
 /**
  * Promise callback

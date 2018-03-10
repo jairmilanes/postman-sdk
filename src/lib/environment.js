@@ -23,18 +23,23 @@ const environment = name => {
 	return {
 		environment,
 		add: add(environment),
-		...operations
+		...operations(environment.values, 'key')
 	}
 }
 
 /**
- * Adds a new environment
+ * Add constructor
  * @param {object} environment The environment object
- * @returns {function(variable:object): object} The environment
+ * @returns {function(variable:object): object} add function
  */
-const add = environment => variable => {
-	environment.values.push(variable)
-	return environment
-}
+const add = environment =>
+	/**
+	 * @param {object} variable A variable object
+	 * @returns {Object}
+	 */
+	variable => {
+		environment.values.push(variable)
+	}
+
 
 export default environment
