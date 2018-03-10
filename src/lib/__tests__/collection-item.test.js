@@ -39,6 +39,7 @@ describe('Collection Item:', () => {
 		expect(Object.keys(item.request)).toMatchObject([
 			'method',
 			'headers',
+			'body',
 			'url'
 		])
 
@@ -119,9 +120,7 @@ describe('Collection Item:', () => {
 		})
 
 		it('Should NOT remove if not found', () => {
-			console.info(collection.item.find(FOLDER_1))
 			const removed = collection.item.remove('dummy', FOLDER_1)
-			console.info(removed)
 			expect(removed).toHaveLength(0)
 		})
 

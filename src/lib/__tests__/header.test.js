@@ -50,7 +50,6 @@ describe('Request Headers:', () => {
 		})
 
 		it('Should find a header', () => {
-			console.info(item.request.headers)
 			expect(headers.find(HEADER_2)).toMatchObject(HEADER_2)
 		})
 
