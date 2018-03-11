@@ -12,7 +12,11 @@ export const recursify = (array, by, value) => {
 	 * @returns {null|*} Null or the value found
 	 */
 	const r = index => {
-		if (array.length && array[index][by] === value) {
+		if (!array.length) {
+			return null
+		}
+
+		if (array[index][by] === value) {
 			return array[index]
 		}
 

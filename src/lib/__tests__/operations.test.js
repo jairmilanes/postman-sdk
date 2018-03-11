@@ -74,6 +74,11 @@ describe('Postman Collection Builder Tests', () => {
 		it('Should return false not found items', () => {
 			expect(operations.has('test 10')).toBeFalsy()
 		})
+
+		it('Should return null if the array is empty', () => {
+			const operations = Operations([])
+			expect(operations.has('test 10')).toBeFalsy()
+		})
 	})
 
 	describe('remove:', () => {
