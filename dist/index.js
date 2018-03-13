@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.Builder = exports.User = exports.Monitors = exports.Mocks = exports.Environments = exports.Collections = undefined;
 
 var _promise = require('babel-runtime/core-js/promise');
 
@@ -183,11 +184,9 @@ const getMethods = target => ({
 	destroy: _destroy(target)
 });
 
-exports.default = {
-	Collections: getMethods('collections'),
-	Environments: getMethods('environments'),
-	Mocks: getMethods('mocks'),
-	Monitors: getMethods('monitors'),
-	User: getMethods('user'),
-	Builder: { collection: _collection2.default, environment: _environment2.default }
-};
+const Collections = exports.Collections = getMethods('collections');
+const Environments = exports.Environments = getMethods('environments');
+const Mocks = exports.Mocks = getMethods('mocks');
+const Monitors = exports.Monitors = getMethods('monitors');
+const User = exports.User = getMethods('user');
+const Builder = exports.Builder = { collection: _collection2.default, environment: _environment2.default };

@@ -3,9 +3,7 @@ if (!process.env.POSTMAN_API_KEY) {
 }
 
 import request from 'request'
-import sdk from './../index'
-
-const { Collections } = sdk
+import { Collections } from './../index'
 
 const getPostResponseMock = () => ({
 	collection: {

@@ -162,11 +162,9 @@ const getMethods = target => ({
 	destroy: _destroy(target)
 })
 
-export default {
-	Collections: getMethods('collections'),
-	Environments: getMethods('environments'),
-	Mocks: getMethods('mocks'),
-	Monitors: getMethods('monitors'),
-	User: getMethods('user'),
-	Builder: { collection, environment }
-}
+export const Collections = getMethods('collections')
+export const Environments = getMethods('environments')
+export const Mocks = getMethods('mocks')
+export const Monitors = getMethods('monitors')
+export const User = getMethods('user')
+export const Builder = { collection, environment }
