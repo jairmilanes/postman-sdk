@@ -1,11 +1,16 @@
+import getUuidByString from 'uuid-by-string'
 import Collection from './../collection'
 
 export const METHODS = ['collection', 'item']
 const COLLECTION_NAME = 'Test Collection'
 const COLLECTION_VERSION = '1.0.0'
-const ITEM_1 = '/test-endpoint'
-const ITEM_2 = '/test-endpoint-2'
-const ITEM_3 = '/test-endpoint-3'
+const ITEM_1 = { name: '/test-endpoint', method: 'GET' }
+const ITEM_2 = { name: '/test-endpoint-2', method: 'POST' }
+const ITEM_3 = { name: '/test-endpoint-3', method: 'PATCH' }
+
+ITEM_1.id = getUuidByString(ITEM_1.method + ITEM_1.name)
+ITEM_2.id = getUuidByString(ITEM_2.method + ITEM_2.name)
+ITEM_3.id = getUuidByString(ITEM_3.method + ITEM_3.name)
 
 describe('Request Headers:', () => {
 	const collection = Collection(COLLECTION_NAME, '1.0.0')
@@ -36,16 +41,16 @@ describe('Request Headers:', () => {
 
 	describe('Operations: ', () => {
 		it('Should add new item', () => {
-			collection.item.add(ITEM_1, 'GET')
-			collection.item.add(ITEM_2, 'POST')
-			collection.item.add(ITEM_3, 'PUT')
+			collection.item.add(ITEM_1.name, ITEM_1.method)
+			collection.item.add(ITEM_2.name, ITEM_2.method)
+			collection.item.add(ITEM_3.name, ITEM_3.method)
 			expect(collection.collection.item).toHaveLength(3)
 		})
 
 		it('Should find an item', () => {
-			const found = collection.item.find(ITEM_2)
+			const found = collection.item.find(ITEM_2.id)
 			expect(found).toHaveProperty('id')
-			expect(found.id).toEqual(ITEM_2)
+			expect(found.id).toEqual(ITEM_2.id)
 		})
 
 		it('Should NOT find an item', () => {
@@ -54,12 +59,14 @@ describe('Request Headers:', () => {
 		})
 
 		it('Should remove items from collection', () => {
-			collection.item.remove(ITEM_1)
-			collection.item.remove(ITEM_3)
+			collection.item.remove(ITEM_1.id)
+			collection.item.remove(ITEM_3.id)
 			expect(collection.collection.item).toHaveLength(1)
-			expect(collection.item.find(ITEM_1)).toBeNull()
-			expect(collection.item.find(ITEM_3)).toBeNull()
-			expect(collection.item.find(ITEM_2).id).toEqual(ITEM_2)
+			expect(collection.item.findBy('name', ITEM_1.name)).toBeNull()
+			expect(collection.item.findBy('name', ITEM_3.name)).toBeNull()
+			expect(collection.item.findBy('name', ITEM_2.name).id).toEqual(
+				ITEM_2.id
+			)
 		})
 	})
 })

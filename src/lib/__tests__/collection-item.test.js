@@ -1,3 +1,4 @@
+import getUuidByString from 'uuid-by-string'
 import Collection from './../collection'
 
 export const METHODS = [
@@ -12,18 +13,26 @@ export const METHODS = [
 	'has',
 	'remove'
 ]
-const ITEM_1 = '/test-endpoint'
-const ITEM_2 = '/test-endpoint-2'
-const ITEM_3 = '/test-endpoint-3'
-const ITEM_4 = '/test-endpoint-4'
-const FOLDER_1 = 'folder 1'
-const FOLDER_2 = 'folder 2'
-const FOLDER_3 = 'folder 3'
+const ITEM_1 = { name: '/test-endpoint', method: 'GET' }
+const ITEM_2 = { name: '/test-endpoint-2', method: 'POST' }
+const ITEM_3 = { name: '/test-endpoint-3', method: 'PATCH' }
+const ITEM_4 = { name: '/test-endpoint-4', method: 'DELETE' }
+const FOLDER_1 = { name: 'folder 1' }
+const FOLDER_2 = { name: 'folder 2' }
+const FOLDER_3 = { name: 'folder 3' }
+
+ITEM_1.id = getUuidByString(ITEM_1.method + ITEM_1.name)
+ITEM_2.id = getUuidByString(ITEM_2.method + ITEM_2.name)
+ITEM_3.id = getUuidByString(ITEM_3.method + ITEM_3.name)
+ITEM_4.id = getUuidByString(ITEM_4.method + ITEM_4.name)
+FOLDER_1.id = getUuidByString(FOLDER_1.name)
+FOLDER_2.id = getUuidByString(FOLDER_2.name)
+FOLDER_3.id = getUuidByString(FOLDER_3.name)
 
 describe('Collection Item:', () => {
 	const collection = Collection('Test Collection')
-	collection.item.add(ITEM_1, 'GET')
-	const item = collection.item.find('/test-endpoint')
+	collection.item.add(ITEM_1.name, ITEM_1.method)
+	const item = collection.item.find(ITEM_1.id)
 
 	describe('Create New Item: ', () => {
 		expect(Object.keys(collection.item)).toMatchObject(METHODS)
@@ -56,81 +65,94 @@ describe('Collection Item:', () => {
 
 	describe('Folders: ', () => {
 		it('Should add folders', () => {
-			collection.item.addFolder(FOLDER_1)
-			collection.item.addFolder(FOLDER_2)
+			collection.item.addFolder(FOLDER_1.name)
+			collection.item.addFolder(FOLDER_2.name)
 			expect(collection.collection.item).toHaveLength(3)
-			expect(collection.item.find(FOLDER_1)).not.toHaveProperty('request')
-			expect(collection.item.find(FOLDER_1).id).toEqual(FOLDER_1)
-			expect(collection.item.find(FOLDER_2)).not.toHaveProperty('request')
-			expect(collection.item.find(FOLDER_2).id).toEqual(FOLDER_2)
+			expect(collection.item.find(FOLDER_1.id)).not.toHaveProperty(
+				'request'
+			)
+			expect(collection.item.find(FOLDER_1).id).toEqual(FOLDER_1.id)
+			expect(collection.item.find(FOLDER_2.id)).not.toHaveProperty(
+				'request'
+			)
+			expect(collection.item.find(FOLDER_2.id).id).toEqual(FOLDER_2.id)
 		})
 
 		it('Should add folders to folders', () => {
-			collection.item.addFolder(FOLDER_3, FOLDER_1)
-			expect(collection.item.find(FOLDER_3).id).toEqual(FOLDER_3)
+			collection.item.addFolder(FOLDER_3.name, FOLDER_1.id)
+			expect(collection.item.find(FOLDER_3.id).id).toEqual(FOLDER_3.id)
 		})
 
 		it('Should find folders', () => {
-			const found = collection.item.find(FOLDER_2)
+			const found = collection.item.find(FOLDER_2.id)
 			expect(found).toHaveProperty('id')
-			expect(found.id).toEqual(FOLDER_2)
+			expect(found.id).toEqual(FOLDER_2.id)
+		})
+
+		it('Should find folders by name', () => {
+			console.info(collection.collection.item)
+			const found = collection.item.findBy('name', FOLDER_2.name)
+			expect(found).toHaveProperty('id')
+			expect(found.id).toEqual(FOLDER_2.id)
 		})
 
 		it('Should remove folders', () => {
-			const object = Object.assign({}, collection.collection.item[2])
-			expect(collection.item.remove(FOLDER_2)).toMatchObject([object])
+			const object = collection.item.find(FOLDER_2.id)
+			expect(collection.item.remove(FOLDER_2.id)).toMatchObject([object])
 		})
 	})
 
 	describe('Operations: ', () => {
 		it('Should add new item', () => {
-			collection.item.add(ITEM_2, 'POST')
-			collection.item.add(ITEM_3, 'PUT')
+			collection.item.add(ITEM_2.name, ITEM_2.method)
+			collection.item.add(ITEM_3.name, ITEM_3.method)
 			expect(collection.collection.item).toHaveLength(4)
 		})
 
 		it('Should add new item to folder', () => {
-			collection.item.addToFolder(FOLDER_1, ITEM_4, 'PATCH')
-			const found = collection.item.find(ITEM_4)
+			collection.item.addToFolder(FOLDER_1.id, ITEM_4.name, ITEM_4.method)
+			const found = collection.item.find(ITEM_4.id)
 			expect(found).toHaveProperty('id')
-			expect(found.id).toEqual(ITEM_4)
+			expect(found.id).toEqual(ITEM_4.id)
 		})
 
 		it('Should throw error ir folder dont exist', () => {
 			expect(() => {
-				collection.item.addToFolder('dummy', ITEM_4, 'PATCH')
+				collection.item.addToFolder('dummy', ITEM_4.name, ITEM_4.method)
 			}).toThrow()
 		})
 
 		it('Should find an item', () => {
-			const found = collection.item.find(ITEM_2)
+			const found = collection.item.findBy('name', ITEM_2.name)
 			expect(found).toHaveProperty('id')
-			expect(found.id).toEqual(ITEM_2)
+			expect(found.id).toEqual(ITEM_2.id)
 		})
 
 		it('Should NOT find an item', () => {
-			const found = collection.item.find('/dummy')
+			const found = collection.item.findBy('name', '/dummy')
 			expect(found).toBeNull()
 		})
 
 		it('Should remove from folders', () => {
-			const removed = collection.item.remove(ITEM_4, FOLDER_1)
+			const removed = collection.item.remove(ITEM_4.id, FOLDER_1.id)
 			expect(removed[0]).toHaveProperty('id')
-			expect(removed[0].id).toEqual(ITEM_4)
+			expect(removed[0].id).toEqual(ITEM_4.id)
 		})
 
 		it('Should NOT remove if not found', () => {
-			const removed = collection.item.remove('dummy', FOLDER_1)
+			const removed = collection.item.remove('dummy', FOLDER_1.id)
 			expect(removed).toHaveLength(0)
 		})
 
 		it('Should remove items from collection', () => {
-			collection.item.remove(ITEM_1)
-			collection.item.remove(ITEM_3)
+			collection.item.remove(ITEM_1.id)
+			collection.item.remove(ITEM_3.id)
 			expect(collection.collection.item).toHaveLength(2)
-			expect(collection.item.find(ITEM_1)).toBeNull()
-			expect(collection.item.find(ITEM_3)).toBeNull()
-			expect(collection.item.find(ITEM_2).id).toEqual(ITEM_2)
+			expect(collection.item.findBy('name', ITEM_1.name)).toBeNull()
+			expect(collection.item.findBy('name', ITEM_3.name)).toBeNull()
+			expect(collection.item.findBy('name', ITEM_2.name).id).toEqual(
+				ITEM_2.id
+			)
 		})
 	})
 })

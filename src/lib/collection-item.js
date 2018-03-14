@@ -1,5 +1,6 @@
 import header from './header'
 import operations from './operations'
+import getUuidByString from 'uuid-by-string'
 
 /**
  * Item constructor
@@ -91,8 +92,8 @@ const add = collection => (path, method) =>
  * @returns {object} The folder
  */
 const getFolder = name => ({
-	id: name,
-	name: `${name.substr(0, 1).toUpperCase() + name.substr(1)} Api Endpoints`,
+	id: getUuidByString(name),
+	name: name,
 	item: []
 })
 
@@ -104,8 +105,8 @@ const getFolder = name => ({
  * @returns {object} The item object
  */
 const getItem = (path, method) => ({
-	id: path,
-	name: `${method.toUpperCase()} ${path}`,
+	id: getUuidByString(method + path),
+	name: path,
 	request: {
 		method: method.toUpperCase(),
 		headers: [],

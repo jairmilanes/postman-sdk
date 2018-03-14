@@ -16,6 +16,10 @@ var _operations = require('./operations');
 
 var _operations2 = _interopRequireDefault(_operations);
 
+var _uuidByString = require('uuid-by-string');
+
+var _uuidByString2 = _interopRequireDefault(_uuidByString);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -104,8 +108,8 @@ const add = collection => (path, method) => collection.item.push(getItem(path, m
  * @returns {object} The folder
  */
 const getFolder = name => ({
-	id: name,
-	name: `${name.substr(0, 1).toUpperCase() + name.substr(1)} Api Endpoints`,
+	id: (0, _uuidByString2.default)(name),
+	name: name,
 	item: []
 });
 
@@ -117,8 +121,8 @@ const getFolder = name => ({
  * @returns {object} The item object
  */
 const getItem = (path, method) => ({
-	id: path,
-	name: `${method.toUpperCase()} ${path}`,
+	id: (0, _uuidByString2.default)(method + path),
+	name: path,
 	request: {
 		method: method.toUpperCase(),
 		headers: [],

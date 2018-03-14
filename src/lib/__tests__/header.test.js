@@ -1,3 +1,4 @@
+import getUuidByString from 'uuid-by-string'
 import Collection from './../collection'
 
 export const METHODS = [
@@ -30,10 +31,13 @@ const DUMMY_HEADER = {
 	value: 'Fake value'
 }
 
+const ITEM_1 = { name: '/test-endpoint', method: 'GET' }
+ITEM_1.id = getUuidByString(ITEM_1.method + ITEM_1.name)
+
 describe('Request Headers:', () => {
 	const collection = Collection('Test Collection', '1.0.0')
-	collection.item.add('/test-endpoint', 'GET')
-	const item = collection.item.find('/test-endpoint')
+	collection.item.add(ITEM_1.name, ITEM_1.method)
+	const item = collection.item.find(ITEM_1.id)
 	const headers = collection.item.request.headers(item)
 
 	describe('Create New Item with Headers', () => {
