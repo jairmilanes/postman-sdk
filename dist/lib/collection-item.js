@@ -16,6 +16,10 @@ var _operations = require('./operations');
 
 var _operations2 = _interopRequireDefault(_operations);
 
+var _isUuid = require('is-uuid');
+
+var _isUuid2 = _interopRequireDefault(_isUuid);
+
 var _uuidByString = require('uuid-by-string');
 
 var _uuidByString2 = _interopRequireDefault(_uuidByString);
@@ -42,7 +46,7 @@ const item = collection => {
 		add: add(collection),
 		addFolder: addFolder(collection.item),
 		addToFolder: addToFolder(collection.item)
-	}, (0, _operations2.default)(collection.item, 'id'));
+	}, (0, _operations2.default)(collection.item, 'name'));
 };
 
 /**
@@ -62,7 +66,7 @@ const addToFolder = (array, isFolder = false) =>
  * @returns {number} The index of the new item
  */
 (name, path, method = null) => {
-	const op = (0, _operations2.default)(array, 'id');
+	const op = (0, _operations2.default)(array, 'name');
 	const folder = op.find(name);
 
 	if (folder) {

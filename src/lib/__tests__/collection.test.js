@@ -48,7 +48,7 @@ describe('Request Headers:', () => {
 		})
 
 		it('Should find an item', () => {
-			const found = collection.item.find(ITEM_2.id)
+			const found = collection.item.find(ITEM_2.name)
 			expect(found).toHaveProperty('id')
 			expect(found.id).toEqual(ITEM_2.id)
 		})
@@ -59,8 +59,8 @@ describe('Request Headers:', () => {
 		})
 
 		it('Should remove items from collection', () => {
-			collection.item.remove(ITEM_1.id)
-			collection.item.remove(ITEM_3.id)
+			collection.item.remove(ITEM_1.name)
+			collection.item.remove(ITEM_3.name)
 			expect(collection.collection.item).toHaveLength(1)
 			expect(collection.item.findBy('name', ITEM_1.name)).toBeNull()
 			expect(collection.item.findBy('name', ITEM_3.name)).toBeNull()

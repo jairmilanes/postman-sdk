@@ -1,5 +1,6 @@
 import header from './header'
 import operations from './operations'
+import isUUID from 'is-uuid'
 import getUuidByString from 'uuid-by-string'
 
 /**
@@ -22,7 +23,7 @@ const item = collection => {
 		add: add(collection),
 		addFolder: addFolder(collection.item),
 		addToFolder: addToFolder(collection.item),
-		...operations(collection.item, 'id')
+		...operations(collection.item, 'name')
 	}
 }
 
@@ -43,7 +44,7 @@ const addToFolder = (array, isFolder = false) =>
 	 * @returns {number} The index of the new item
 	 */
 	(name, path, method = null) => {
-		const op = operations(array, 'id')
+		const op = operations(array, 'name')
 		const folder = op.find(name)
 
 		if (folder) {

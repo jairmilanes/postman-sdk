@@ -1,6 +1,6 @@
 {
   "name": "postman-sdk",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "A Postman SDK that provides helpers to create collections & environments and to communicate with the latest Postman REST api.",
   "homepage": "https://github.com/layoutzweb/postman-sdk",
   "repository": "https://github.com/layoutzweb/postman-sdk",
@@ -12,7 +12,7 @@
     "precommit": "lint-staged",
     "deploy": "npm-run-all lint:js jest:u",
     "jest:u": "jest -u --coverage",
-    "compile": "babel --ignore node_modules --watch --ignore __tests__ -d dist/ src/",
+    "compile": "babel --ignore node_modules --ignore __tests__ -d dist/ src/",
     "test:u": "npm-run-all lint:js copy babel jest:u",
     "build": "npm-run-all lint:js:fix jest compile",
     "pretty": "prettier --config ./.prettierrc.yml --write \"{src,__{tests,mocks}__}/**/*.js\"",
@@ -75,6 +75,7 @@
     "regenerator-runtime": "^0.11.1"
   },
   "dependencies": {
+    "is-uuid": "^1.0.2",
     "request": "^2.83.0",
     "uuid-by-string": "^0.6.0"
   },
