@@ -18,7 +18,7 @@ import item from './collection-item'
 const collection = (name, version = null) => {
 	const collection = {
 		info: {
-			version: version,
+			version: version || '0.0.1',
 			name: name,
 			schema:
 				'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
