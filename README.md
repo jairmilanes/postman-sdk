@@ -34,13 +34,15 @@ With this adk you have easy access to all rest methods provided by the Postman R
 Use one of the collections to make an api call:  
 ```javascript  
 Collections.get([id])  
- .then((response => console.log(response)) .catch(err =>        console.error(err))
+ .then((response => console.log(response)) .catch(err => console.error(err))
 ```
 ```javascript  
 Collections.post([...props])  
- .then((response => console.log(response)) .catch(err =>        console.error(err))  
+ .then((response => console.log(response)) .catch(err => console.error(err))  
 ```  
-  
+
+___
+
 ### [Available Methods](#available-methods)  
 All of the common REST methods are available:  
 #### GET  
@@ -133,14 +135,14 @@ builder.environment
   
 # [Adding to Postman](#adding-collections-to-postman)  
 Once you have a collection, you can save to a file and manually import into Postman, or you can use the rest api to upload it directly to Postman cloud and have it show up on your Postman account.  
-```javascript
+
 ```javascript
 process.env.POSTMAN_API_KEY = 'SET_THIS_TO_YOUR_POSTMAN_KEY'
 
-const {Collection, Environment, Builder} = require('postman-sdk')
+const {Builder, Collections, Environments} = require('postman-sdk')
 
 // Build a collection and environment
-const myCollection = Builder.collection('My test collection')
+const myCollection = Builder.collection('My test collection', '1.0.0')
 const myEnvironment = Builder.environment('My test environment')
 
 myCollection.item.add('/test-endpoint', 'POST')
@@ -156,8 +158,13 @@ myEnvironment .add({
 })
 
 // Post the results to Postman Cloud and access from your Postman app
-Collection.post(myCollection.collection)
-Environment.post(myEnvironment.environment)
+Collections.post(myCollection).then((response) => {
+    console.log(response)
+})
+
+Environments.post(myEnvironment).then((response) => {
+    console.log(response)
+})
 ```
   
 # [Tests](#tests)  
