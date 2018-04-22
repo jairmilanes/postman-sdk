@@ -145,12 +145,27 @@ const {Builder, Collections, Environments} = require('postman-sdk')
 const myCollection = Builder.collection('My test collection', '1.0.0')
 const myEnvironment = Builder.environment('My test environment')
 
+// Add request endpoints to a collection
 myCollection.item.add('/test-endpoint', 'POST')
+
+// Add folders to a collection
 myCollection.item.addFolder('Test Folder')
+
+// Add items to collection folders
 myCollection.item.addToFolder('Test Folder', '/test-endpoint-2', 'GET')
 myCollection.item.addToFolder('Test Folder', '/test-endpoint-3', 'GET')
 
-myEnvironment .add({
+// Add event scripts to a collection
+myCollection.event.add({
+    name: 'test-event',
+    listen: 'prerequest',
+    disabled: false,
+    type: 'text/javascript',
+    exec: ['test script']
+})
+
+// Add environment variables
+myEnvironment.add({
     key: 'test',
     value: 'test value',
     type: 'string',
