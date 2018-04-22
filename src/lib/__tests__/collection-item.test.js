@@ -34,33 +34,41 @@ describe('Collection Item:', () => {
 	collection.item.add(ITEM_1.name, ITEM_1.method)
 	const item = collection.item.find(ITEM_1.name)
 
-	describe('Create New Item: ', () => {
-		expect(Object.keys(collection.item)).toMatchObject(METHODS)
+	describe('Item: ', () => {
 
-		expect(Object.keys(item)).toMatchObject([
-			'id',
-			'name',
-			'request',
-			'response',
-			'event'
-		])
+		it('should contain all methods', () => {
+            expect(Object.keys(collection.item)).toMatchObject(METHODS)
+		})
 
-		expect(Object.keys(item.request)).toMatchObject([
-			'method',
-			'headers',
-			'body',
-			'url'
-		])
+        it('should contain all properties', () => {
+            expect(Object.keys(item)).toMatchObject([
+                'id',
+                'name',
+                'request',
+                'response',
+                'event'
+            ])
+        })
 
-		expect(Object.keys(item.request.url)).toMatchObject([
-			'raw',
-			'path',
-			'host',
-			'port',
-			'protocol',
-			'query',
-			'variable'
-		])
+        it('should contain a request object', () => {
+            expect(Object.keys(item.request)).toMatchObject([
+                'method',
+                'headers',
+                'body',
+                'url'
+            ])
+        })
+        it('should contain a url object', () => {
+            expect(Object.keys(item.request.url)).toMatchObject([
+                'raw',
+                'path',
+                'host',
+                'port',
+                'protocol',
+                'query',
+                'variable'
+            ])
+        })
 	})
 
 	describe('Folders: ', () => {
@@ -90,7 +98,6 @@ describe('Collection Item:', () => {
 		})
 
 		it('Should find folders by name', () => {
-			console.info(collection.collection.item)
 			const found = collection.item.findBy('name', FOLDER_2.name)
 			expect(found).toHaveProperty('id')
 			expect(found.id).toEqual(FOLDER_2.id)

@@ -1,4 +1,5 @@
 import item from './collection-item'
+import event from './event'
 
 /**
  * Creates a postman collection json file
@@ -30,7 +31,8 @@ const collection = (name, version = null) => {
 
 	return {
 		collection,
-		item: item(collection)
+		item: item(collection),
+		event: event(collection)
 	}
 }
 

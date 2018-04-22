@@ -1,7 +1,7 @@
 import getUuidByString from 'uuid-by-string'
 import Collection from './../collection'
 
-export const METHODS = ['collection', 'item']
+export const METHODS = ['collection', 'item', 'event']
 const COLLECTION_NAME = 'Test Collection'
 const COLLECTION_VERSION = '1.0.0'
 const ITEM_1 = { name: '/test-endpoint', method: 'GET' }
@@ -12,10 +12,10 @@ ITEM_1.id = getUuidByString(ITEM_1.method + ITEM_1.name)
 ITEM_2.id = getUuidByString(ITEM_2.method + ITEM_2.name)
 ITEM_3.id = getUuidByString(ITEM_3.method + ITEM_3.name)
 
-describe('Request Headers:', () => {
-	const collection = Collection(COLLECTION_NAME, '1.0.0')
+describe('Collection:', () => {
+	const collection = Collection(COLLECTION_NAME, COLLECTION_VERSION)
 
-	describe('Create New Item: ', () => {
+	it('should create a new collection: ', () => {
 		expect(Object.keys(collection)).toMatchObject(METHODS)
 
 		expect(Object.keys(collection.collection)).toMatchObject([
