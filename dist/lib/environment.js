@@ -20,11 +20,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {string} name The environment name
  * @returns {
  *    {
- *      add: function(key:string, value:string),
- *      findIndex: function(item:object),
- *      find: function(item:object),
- *      has: function(item:object),
- *      remove: function(item:object)
+ *      add: function(variable:object),
+ *      findIndex: function(itemName:string),
+ *      find: function(itemName:string),
+ *      has: function(itemName:string),
+ *      remove: function(itemName:string)
  *    }
  *  } The operations object
  */

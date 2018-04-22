@@ -8,7 +8,13 @@ export default collection => {
     }
 }
 
-const add = collection => (params) => {
+/**
+ * Adds a new event to the current collection
+ *
+ * @param collection
+ * @returns {function(params:object)}
+ */
+const add = collection => params => {
     const {name, listen, disabled, type, exec, source} = params
 
     const event = {
