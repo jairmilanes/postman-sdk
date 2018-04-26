@@ -2,21 +2,20 @@ import operations from './operations'
 
 /**
  * Creates a item request headers array
- * @param {object} item The item
- * @returns {
- *    {
- *      add: function(key:string, value:string),
- *      findIndex: function(item:object),
- *      find: function(item:object),
- *      has: function(item:object),
- *      remove: function(item:object)
- *    }
- *  } The operations object
+ *
+ * @param {object[]} headerList The item
+ * @returns {{addHeader: (function(string, string): number), findHeader: Function, findHeaderBy: Function, findHeaderWith: (function(Function)), findHeaderIndex: Function, hasHeader: Function, removeHeader: Function}}
  */
-const header = item => {
+const header = headerList => {
+	const methods = operations(headerList, 'key')
 	return {
-		add: add(item),
-		...operations(item.request.headers, 'key')
+		addHeader: add(headerList),
+		findHeader: methods.find,
+        findHeaderBy: methods.findBy,
+        findHeaderWith: methods.findWith,
+        findHeaderIndex: methods.findIndex,
+        hasHeader: methods.has,
+        removeHeader: methods.remove,
 	}
 }
 
@@ -26,15 +25,15 @@ const header = item => {
  * @param {object} item The item
  * @returns {function(key:string, value:string): number} The position of the new item
  */
-const add = item => (key, value) => {
+const add = headerList => (key, value) => {
 	if (typeof key === 'object') {
-		return item.request.headers.push({
+		return headerList.push({
 			key: key.key,
 			value: key.value
 		})
 	}
 
-	return item.request.headers.push({
+	return headerList.push({
 		key: key,
 		value: value
 	})

@@ -7,6 +7,7 @@ export const METHODS = [
 	'findBy',
 	'find',
 	'has',
+    'removeFrom',
 	'remove'
 ]
 
@@ -51,7 +52,7 @@ describe('Environment:', () => {
 				'environment',
 				...METHODS
 			])
-			expect(Object.keys(environment)).toHaveLength(8)
+			expect(Object.keys(environment)).toHaveLength(9)
 		})
 
 		it('Should contain the correct properties', () => {

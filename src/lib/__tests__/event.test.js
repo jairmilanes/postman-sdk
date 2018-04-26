@@ -59,14 +59,12 @@ const eventMockTwo = newEventMock('event two', 'source')
 describe('Events', () => {
     describe('Operations: ', () => {
         it('should add an event with exec script', () => {
-            console.log(eventOne)
             collection.event.add(eventOne)
             expect(collection.collection.event).toHaveLength(1)
             expect(collection.collection.event[0].script).toHaveProperty('exec')
         })
 
         it('should add an event with source script', () => {
-            console.log(eventTwo)
             collection.event.add(eventTwo)
             console.log(collection.collection.event)
             expect(collection.collection.event).toHaveLength(2)

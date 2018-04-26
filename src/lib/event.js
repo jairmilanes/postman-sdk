@@ -1,20 +1,62 @@
 import operations from "./operations";
 import getUuidByString from "uuid-by-string/index";
 
-export default collection => {
+
+export const itemEvents = (eventList) => {
+    const methods = operations(eventList, 'id')
+
     return {
-        add: add(collection),
-        ...operations(collection.event, 'id')
+        /**
+         * Add an event to the item
+         */
+        addEvent: add(eventList),
+        /**
+         * Find's an event in a item
+         */
+        findEventIndex: methods.findIndex,
+
+        /**
+         * Finds an event with a callback function
+         */
+        findEventWith: methods.findWith,
+
+        /**
+         * Finds an event by any event property
+         */
+        findEventBy: methods.findBy,
+
+        /**
+         * Finds an event by id
+         */
+        findEvent: methods.find,
+
+        /**
+         * Check if an item has an event
+         */
+        hasEvent: methods.has,
+
+        /**
+         * Removes an event from an item
+         */
+        removeEvent: methods.remove
+    }
+}
+
+export const collectionEvents = (eventList) => {
+    const methods = operations(eventList, 'id')
+    return {
+        add: add(eventList),
+        ...methods
     }
 }
 
 /**
  * Adds a new event to the current collection
  *
- * @param collection
+ * @param eventList
  * @returns {function(params:object)}
  */
-const add = collection => params => {
+const add = eventList => params => {
     const {name, listen, disabled, type, exec, source} = params
 
     const event = {
@@ -40,5 +82,5 @@ const add = collection => params => {
         event.script.source = source
     }
 
-    collection.event.push(event)
+    eventList.push(event)
 }

@@ -2,6 +2,7 @@ import header from './header'
 import operations from './operations'
 import isUUID from 'is-uuid'
 import getUuidByString from 'uuid-by-string'
+import {itemEvents} from './event'
 
 /**
  * Item constructor
@@ -17,9 +18,6 @@ import getUuidByString from 'uuid-by-string'
 
 const item = collection => {
 	return {
-		request: {
-			headers: header
-		},
 		add: add(collection),
 		addFolder: addFolder(collection.item),
 		addToFolder: addToFolder(collection.item),
@@ -105,25 +103,32 @@ const getFolder = name => ({
  * @param {string} method The method name
  * @returns {object} The item object
  */
-const getItem = (path, method) => ({
-	id: getUuidByString(method + path),
-	name: path,
-	request: {
-		method: method.toUpperCase(),
-		headers: [],
-		body: {},
-		url: {
-			raw: `{{PROTOCOL}}//{{HOST}}:{{PORT}}${path}`,
-			path: path,
-			host: '{{HOST}}',
-			port: '{{PORT}}',
-			protocol: '{{PROTOCOL}}',
-			query: [],
-			variable: []
-		}
-	},
-	response: [],
-	event: []
-})
+const getItem = (path, method) => {
+	const item = {
+        id: getUuidByString(method + path),
+        name: path,
+        request: {
+            method: method.toUpperCase(),
+            headers: [],
+            body: {},
+            url: {
+                path: path,
+                host: '{{HOST}}',
+                port: '{{PORT}}',
+                protocol: '{{PROTOCOL}}',
+                query: [],
+                variable: []
+            }
+        },
+        response: [],
+        event: []
+    }
+
+    return {
+		...item,
+		...header(item.request.headers),
+        ...itemEvents(item.event)
+	}
+}
 
 export default item

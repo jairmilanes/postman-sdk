@@ -2,7 +2,6 @@ import getUuidByString from 'uuid-by-string'
 import Collection from './../collection'
 
 export const METHODS = [
-	'request',
 	'add',
 	'addFolder',
 	'addToFolder',
@@ -11,6 +10,7 @@ export const METHODS = [
 	'findBy',
 	'find',
 	'has',
+    'removeFrom',
 	'remove'
 ]
 const ITEM_1 = { name: '/test-endpoint', method: 'GET' }
@@ -46,7 +46,21 @@ describe('Collection Item:', () => {
                 'name',
                 'request',
                 'response',
-                'event'
+                'event',
+                'addHeader',
+                'findHeader',
+                'findHeaderBy',
+                'findHeaderWith',
+                'findHeaderIndex',
+                'hasHeader',
+                'removeHeader',
+                'addEvent',
+                'findEventIndex',
+                'findEventWith',
+                'findEventBy',
+                'findEvent',
+                'hasEvent',
+                'removeEvent'
             ])
         })
 
@@ -60,7 +74,6 @@ describe('Collection Item:', () => {
         })
         it('should contain a url object', () => {
             expect(Object.keys(item.request.url)).toMatchObject([
-                'raw',
                 'path',
                 'host',
                 'port',

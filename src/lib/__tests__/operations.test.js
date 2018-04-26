@@ -11,7 +11,7 @@ import {
 } from './helper'
 
 describe('Postman Collection Builder Tests', () => {
-	const METHODS = ['findIndex', 'findWith', 'findBy', 'find', 'has', 'remove']
+	const METHODS = ['findIndex', 'findWith', 'findBy', 'find', 'has', 'removeFrom', 'remove']
 	const operations = Operations(ARRAY)
 
 	it('Should contain the defined methods', () => {

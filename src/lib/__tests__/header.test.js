@@ -2,13 +2,13 @@ import getUuidByString from 'uuid-by-string'
 import Collection from './../collection'
 
 export const METHODS = [
-	'add',
-	'findIndex',
-	'findWith',
-	'findBy',
-	'find',
-	'has',
-	'remove'
+    "addHeader",
+    "findHeader",
+    "findHeaderBy",
+    "findHeaderWith",
+    "findHeaderIndex",
+    "hasHeader",
+    "removeHeader"
 ]
 
 const HEADER_1 = {
@@ -38,36 +38,34 @@ describe('Request Headers:', () => {
 	const collection = Collection('Test Collection', '1.0.0')
 	collection.item.add(ITEM_1.name, ITEM_1.method)
 	const item = collection.item.find(ITEM_1.name)
-	const headers = collection.item.request.headers(item)
 
 	describe('Create New Item with Headers', () => {
-		expect(Object.keys(headers)).toMatchObject(METHODS)
-		expect(Object.keys(headers)).toHaveLength(7)
+		METHODS.forEach(method => expect(item).toHaveProperty(method))
 	})
 
 	describe('Operations: ', () => {
 		it('Should add new headers', () => {
-			headers.add(HEADER_1)
-			headers.add(HEADER_2)
-			headers.add(HEADER_3.key, HEADER_3.value)
+            item.addHeader(HEADER_1)
+            item.addHeader(HEADER_2)
+            item.addHeader(HEADER_3.key, HEADER_3.value)
 			expect(item.request.headers).toHaveLength(3)
 		})
 
 		it('Should find a header', () => {
-			expect(headers.find(HEADER_2)).toMatchObject(HEADER_2)
+			expect(item.findHeader(HEADER_2)).toMatchObject(HEADER_2)
 		})
 
 		it('Should NOT find a variable', () => {
-			expect(headers.find(DUMMY_HEADER)).toBeNull()
+			expect(item.findHeader(DUMMY_HEADER)).toBeNull()
 		})
 
 		it('Should remove variables to the environment', () => {
-			headers.remove(HEADER_1)
-			headers.remove(HEADER_2)
+            item.removeHeader(HEADER_1)
+            item.removeHeader(HEADER_2)
 			expect(item.request.headers).toHaveLength(1)
-			expect(headers.find(HEADER_2)).toBeNull()
-			expect(headers.find(HEADER_1)).toBeNull()
-			expect(headers.find(HEADER_3)).toMatchObject(HEADER_3)
+			expect(item.findHeader(HEADER_2)).toBeNull()
+			expect(item.findHeader(HEADER_1)).toBeNull()
+			expect(item.findHeader(HEADER_3)).toMatchObject(HEADER_3)
 		})
 	})
 })
