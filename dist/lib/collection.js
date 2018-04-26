@@ -10,8 +10,6 @@ var _collectionItem2 = _interopRequireDefault(_collectionItem);
 
 var _event = require('./event');
 
-var _event2 = _interopRequireDefault(_event);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -44,7 +42,7 @@ const collection = (name, version = null) => {
 	return {
 		collection,
 		item: (0, _collectionItem2.default)(collection),
-		event: (0, _event2.default)(collection)
+		event: (0, _event.collectionEvents)(collection.event)
 	};
 };
 

@@ -4,10 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
 var _operations = require('./operations');
 
 var _operations2 = _interopRequireDefault(_operations);
@@ -16,21 +12,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  * Creates a item request headers array
- * @param {object} item The item
- * @returns {
- *    {
- *      add: function(key:string, value:string),
- *      findIndex: function(item:object),
- *      find: function(item:object),
- *      has: function(item:object),
- *      remove: function(item:object)
- *    }
- *  } The operations object
+ *
+ * @param {object[]} headerList The item
+ * @returns {{addHeader: (function(string, string): number), findHeader: Function, findHeaderBy: Function, findHeaderWith: (function(Function)), findHeaderIndex: Function, hasHeader: Function, removeHeader: Function}}
  */
-const header = item => {
-  return (0, _extends3.default)({
-    add: add(item)
-  }, (0, _operations2.default)(item.request.headers, 'key'));
+const header = headerList => {
+  const methods = (0, _operations2.default)(headerList, 'key');
+  return {
+    addHeader: add(headerList),
+    findHeader: methods.find,
+    findHeaderBy: methods.findBy,
+    findHeaderWith: methods.findWith,
+    findHeaderIndex: methods.findIndex,
+    hasHeader: methods.has,
+    removeHeader: methods.remove
+  };
 };
 
 /**
@@ -39,15 +35,15 @@ const header = item => {
  * @param {object} item The item
  * @returns {function(key:string, value:string): number} The position of the new item
  */
-const add = item => (key, value) => {
+const add = headerList => (key, value) => {
   if (typeof key === 'object') {
-    return item.request.headers.push({
+    return headerList.push({
       key: key.key,
       value: key.value
     });
   }
 
-  return item.request.headers.push({
+  return headerList.push({
     key: key,
     value: value
   });

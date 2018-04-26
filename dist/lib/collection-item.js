@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _extends2 = require('babel-runtime/helpers/extends');
@@ -24,6 +24,8 @@ var _uuidByString = require('uuid-by-string');
 
 var _uuidByString2 = _interopRequireDefault(_uuidByString);
 
+var _event = require('./event');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -39,14 +41,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 const item = collection => {
-	return (0, _extends3.default)({
-		request: {
-			headers: _header2.default
-		},
-		add: add(collection),
-		addFolder: addFolder(collection.item),
-		addToFolder: addToFolder(collection.item)
-	}, (0, _operations2.default)(collection.item, 'name'));
+  return (0, _extends3.default)({
+    add: add(collection),
+    addFolder: addFolder(collection.item),
+    addToFolder: addToFolder(collection.item)
+  }, (0, _operations2.default)(collection.item, 'name'));
 };
 
 /**
@@ -66,14 +65,14 @@ const addToFolder = (array, isFolder = false) =>
  * @returns {number} The index of the new item
  */
 (name, path, method = null) => {
-	const op = (0, _operations2.default)(array, 'name');
-	const folder = op.find(name);
+  const op = (0, _operations2.default)(array, 'name');
+  const folder = op.find(name);
 
-	if (folder) {
-		return folder.item.push(isFolder ? getFolder(path) : getItem(path, method));
-	}
+  if (folder) {
+    return folder.item.push(isFolder ? getFolder(path) : getItem(path, method));
+  }
 
-	throw new Error(`addToFolder: Item named "${name}" could not be found!`);
+  throw new Error(`addToFolder: Item named "${name}" could not be found!`);
 };
 
 /**
@@ -91,11 +90,11 @@ const addFolder = array =>
  * @returns {number} The index of the new folder
  */
 (name, parent = null) => {
-	if (!parent) {
-		return array.push(getFolder(name));
-	}
+  if (!parent) {
+    return array.push(getFolder(name));
+  }
 
-	return addToFolder(array, true)(parent, name);
+  return addToFolder(array, true)(parent, name);
 };
 
 /**
@@ -112,9 +111,9 @@ const add = collection => (path, method) => collection.item.push(getItem(path, m
  * @returns {object} The folder
  */
 const getFolder = name => ({
-	id: (0, _uuidByString2.default)(name),
-	name: name,
-	item: []
+  id: (0, _uuidByString2.default)(name),
+  name: name,
+  item: []
 });
 
 /**
@@ -124,25 +123,28 @@ const getFolder = name => ({
  * @param {string} method The method name
  * @returns {object} The item object
  */
-const getItem = (path, method) => ({
-	id: (0, _uuidByString2.default)(method + path),
-	name: path,
-	request: {
-		method: method.toUpperCase(),
-		headers: [],
-		body: {},
-		url: {
-			raw: `{{PROTOCOL}}//{{HOST}}:{{PORT}}${path}`,
-			path: path,
-			host: '{{HOST}}',
-			port: '{{PORT}}',
-			protocol: '{{PROTOCOL}}',
-			query: [],
-			variable: []
-		}
-	},
-	response: [],
-	event: []
-});
+const getItem = (path, method) => {
+  const item = {
+    id: (0, _uuidByString2.default)(method + path),
+    name: path,
+    request: {
+      method: method.toUpperCase(),
+      headers: [],
+      body: {},
+      url: {
+        path: path,
+        host: '{{HOST}}',
+        port: '{{PORT}}',
+        protocol: '{{PROTOCOL}}',
+        query: [],
+        variable: []
+      }
+    },
+    response: [],
+    event: []
+  };
+
+  return (0, _extends3.default)({}, item, (0, _header2.default)(item.request.headers), (0, _event.itemEvents)(item.event));
+};
 
 exports.default = item;

@@ -28,7 +28,7 @@ var _environment2 = _interopRequireDefault(_environment);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 if (process.env.NODE_ENV !== 'test' && !process.env.POSTMAN_API_KEY) {
-	throw new Error('Postman SDK: POSTMAN_API_KEY anv variable not found!');
+	console.warn('Postman SDK: POSTMAN_API_KEY anv variable not found!');
 }
 
 /**

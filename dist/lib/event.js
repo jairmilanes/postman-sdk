@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.collectionEvents = exports.itemEvents = undefined;
 
 var _extends2 = require("babel-runtime/helpers/extends");
 
@@ -18,13 +19,60 @@ var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = collection => {
-    return (0, _extends3.default)({
-        add: add(collection)
-    }, (0, _operations2.default)(collection.event, 'id'));
+const itemEvents = exports.itemEvents = eventList => {
+    const methods = (0, _operations2.default)(eventList, 'id');
+
+    return {
+        /**
+         * Add an event to the item
+         */
+        addEvent: add(eventList),
+        /**
+         * Find's an event in a item
+         */
+        findEventIndex: methods.findIndex,
+
+        /**
+         * Finds an event with a callback function
+         */
+        findEventWith: methods.findWith,
+
+        /**
+         * Finds an event by any event property
+         */
+        findEventBy: methods.findBy,
+
+        /**
+         * Finds an event by id
+         */
+        findEvent: methods.find,
+
+        /**
+         * Check if an item has an event
+         */
+        hasEvent: methods.has,
+
+        /**
+         * Removes an event from an item
+         */
+        removeEvent: methods.remove
+    };
 };
 
-const add = collection => params => {
+const collectionEvents = exports.collectionEvents = eventList => {
+    const methods = (0, _operations2.default)(eventList, 'id');
+    return (0, _extends3.default)({
+        add: add(eventList)
+    }, methods);
+};
+
+/**
+ * Adds a new event to the current collection
+ *
+ * @param eventList
+ * @returns {function(params:object)}
+ */
+const add = eventList => params => {
     const { name, listen, disabled, type, exec, source } = params;
 
     const event = {
@@ -50,5 +98,5 @@ const add = collection => params => {
         event.script.source = source;
     }
 
-    collection.event.push(event);
+    eventList.push(event);
 };
