@@ -11,11 +11,11 @@ const header = headerList => {
 	return {
 		addHeader: add(headerList),
 		findHeader: methods.find,
-        findHeaderBy: methods.findBy,
-        findHeaderWith: methods.findWith,
-        findHeaderIndex: methods.findIndex,
-        hasHeader: methods.has,
-        removeHeader: methods.remove,
+		findHeaderBy: methods.findBy,
+		findHeaderWith: methods.findWith,
+		findHeaderIndex: methods.findIndex,
+		hasHeader: methods.has,
+		removeHeader: methods.remove
 	}
 }
 

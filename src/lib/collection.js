@@ -1,5 +1,5 @@
 import item from './collection-item'
-import {collectionEvents} from './event'
+import { collectionEvents } from './event'
 
 /**
  * Creates a postman collection json file

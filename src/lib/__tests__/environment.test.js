@@ -7,7 +7,7 @@ export const METHODS = [
 	'findBy',
 	'find',
 	'has',
-    'removeFrom',
+	'removeFrom',
 	'remove'
 ]
 
