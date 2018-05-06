@@ -1,19 +1,31 @@
 {
   "presets": [
-    "stage-0",
-    "jest",
     ["env", {
       "targets": {
-        "node": "6.10"
+        "node": "6.1.0"
       },
-      "modules": "commonjs",
-      "useBuiltIns": "usage",
+      "modules": false,
       "debug": false
-    }]
+    }],
+    "es2015", "stage-0", "jest"
   ],
+  "env": {
+    "test": {
+      "presets": [["env", {
+        "targets": {
+          "node": "6.1.0"
+        },
+        "debug": false
+      }], "es2015", "stage-0", "jest"],
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+
+  },
+  "ignore": ["node_modules"],
   "plugins": [
     "syntax-async-functions",
     "syntax-dynamic-import",
+    "transform-es2015-destructuring",
     "transform-async-to-generator",
     "transform-object-rest-spread",
     "transform-async-to-module-method",

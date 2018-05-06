@@ -1,6 +1,9 @@
 import getUuidByString from 'uuid-by-string'
 import Collection from './../collection'
 
+import { ITEM_1, ITEM_2, ITEM_3, ITEM_4 } from '../__mocks__/mocked-items'
+import { FOLDER_1, FOLDER_2, FOLDER_3 } from '../__mocks__/mocked-folders'
+
 export const METHODS = [
 	'add',
 	'addFolder',
@@ -10,78 +13,80 @@ export const METHODS = [
 	'findBy',
 	'find',
 	'has',
-    'removeFrom',
+	'removeFrom',
 	'remove'
 ]
-const ITEM_1 = { name: '/test-endpoint', method: 'GET' }
-const ITEM_2 = { name: '/test-endpoint-2', method: 'POST' }
-const ITEM_3 = { name: '/test-endpoint-3', method: 'PATCH' }
-const ITEM_4 = { name: '/test-endpoint-4', method: 'DELETE' }
-const FOLDER_1 = { name: 'folder 1' }
-const FOLDER_2 = { name: 'folder 2' }
-const FOLDER_3 = { name: 'folder 3' }
-
-ITEM_1.id = getUuidByString(ITEM_1.method + ITEM_1.name)
-ITEM_2.id = getUuidByString(ITEM_2.method + ITEM_2.name)
-ITEM_3.id = getUuidByString(ITEM_3.method + ITEM_3.name)
-ITEM_4.id = getUuidByString(ITEM_4.method + ITEM_4.name)
-FOLDER_1.id = getUuidByString(FOLDER_1.name)
-FOLDER_2.id = getUuidByString(FOLDER_2.name)
-FOLDER_3.id = getUuidByString(FOLDER_3.name)
 
 describe('Collection Item:', () => {
 	const collection = Collection('Test Collection')
-	collection.item.add(ITEM_1.name, ITEM_1.method)
+	collection.item.add(ITEM_1.name, ITEM_1.props)
 	const item = collection.item.find(ITEM_1.name)
 
 	describe('Item: ', () => {
-
 		it('should contain all methods', () => {
-            expect(Object.keys(collection.item)).toMatchObject(METHODS)
+			expect(Object.keys(collection.item)).toMatchObject(METHODS)
 		})
 
-        it('should contain all properties', () => {
-            expect(Object.keys(item)).toMatchObject([
-                'id',
-                'name',
-                'request',
-                'response',
-                'event',
-                'addHeader',
-                'findHeader',
-                'findHeaderBy',
-                'findHeaderWith',
-                'findHeaderIndex',
-                'hasHeader',
-                'removeHeader',
-                'addEvent',
-                'findEventIndex',
-                'findEventWith',
-                'findEventBy',
-                'findEvent',
-                'hasEvent',
-                'removeEvent'
-            ])
-        })
+		it('should contain all properties', () => {
+			expect(Object.keys(item).sort()).toMatchObject(
+				[
+					'id',
+					'name',
+					'request',
+					'response',
+					'event',
+					'addHeader',
+					'findHeader',
+					'findHeaderBy',
+					'findHeaderWith',
+					'findHeaderIndex',
+					'hasHeader',
+					'removeHeader',
+					'addEvent',
+					'findEventIndex',
+					'findEventWith',
+					'findEventBy',
+					'findEvent',
+					'hasEvent',
+					'removeEvent'
+				].sort()
+			)
+		})
 
-        it('should contain a request object', () => {
-            expect(Object.keys(item.request)).toMatchObject([
-                'method',
-                'headers',
-                'body',
-                'url'
-            ])
-        })
-        it('should contain a url object', () => {
-            expect(Object.keys(item.request.url)).toMatchObject([
-                'path',
-                'host',
-                'port',
-                'protocol',
-                'query',
-                'variable'
-            ])
-        })
+		it('should contain a request object', () => {
+			expect(Object.keys(item.request)).toMatchObject([
+				'method',
+				'headers',
+				'body',
+				'url'
+			])
+		})
+
+		it('should contain a url object', () => {
+			expect(Object.keys(item.request.url).sort()).toMatchObject(
+				[
+					'path',
+					'host',
+					'port',
+					'protocol',
+					'query',
+					'variables'
+				].sort()
+			)
+		})
+
+		it('should have parsed the url correctly', () => {
+			expect(item.request.url).toMatchObject({
+				protocol: 'http',
+				host: 'testurl.com',
+				path: '/test-endpoint',
+				port: null,
+				query: {
+					test: '1'
+				},
+				variables: []
+			})
+		})
 	})
 
 	describe('Folders: ', () => {
@@ -118,19 +123,25 @@ describe('Collection Item:', () => {
 
 		it('Should remove folders', () => {
 			const object = collection.item.find(FOLDER_2.name)
-			expect(collection.item.remove(FOLDER_2.name)).toMatchObject([object])
+			expect(collection.item.remove(FOLDER_2.name)).toMatchObject([
+				object
+			])
 		})
 	})
 
 	describe('Operations: ', () => {
 		it('Should add new item', () => {
-			collection.item.add(ITEM_2.name, ITEM_2.method)
-			collection.item.add(ITEM_3.name, ITEM_3.method)
+			collection.item.add(ITEM_2.name, ITEM_2.props)
+			collection.item.add(ITEM_3.name, ITEM_3.props)
 			expect(collection.collection.item).toHaveLength(4)
 		})
 
 		it('Should add new item to folder', () => {
-			collection.item.addToFolder(FOLDER_1.name, ITEM_4.name, ITEM_4.method)
+			collection.item.addToFolder(
+				FOLDER_1.name,
+				ITEM_4.name,
+				ITEM_4.props
+			)
 			const found = collection.item.find(ITEM_4.name)
 			expect(found).toHaveProperty('id')
 			expect(found.id).toEqual(ITEM_4.id)

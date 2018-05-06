@@ -1,16 +1,9 @@
-import getUuidByString from 'uuid-by-string'
 import Collection from './../collection'
+import { ITEM_1, ITEM_2, ITEM_3 } from '../__mocks__/mocked-items'
 
-export const METHODS = ['collection', 'item', 'event']
+const METHODS = ['collection', 'item', 'event']
 const COLLECTION_NAME = 'Test Collection'
 const COLLECTION_VERSION = '1.0.0'
-const ITEM_1 = { name: '/test-endpoint', method: 'GET' }
-const ITEM_2 = { name: '/test-endpoint-2', method: 'POST' }
-const ITEM_3 = { name: '/test-endpoint-3', method: 'PATCH' }
-
-ITEM_1.id = getUuidByString(ITEM_1.method + ITEM_1.name)
-ITEM_2.id = getUuidByString(ITEM_2.method + ITEM_2.name)
-ITEM_3.id = getUuidByString(ITEM_3.method + ITEM_3.name)
 
 describe('Collection:', () => {
 	const collection = Collection(COLLECTION_NAME, COLLECTION_VERSION)
@@ -41,9 +34,9 @@ describe('Collection:', () => {
 
 	describe('Operations: ', () => {
 		it('Should add new item', () => {
-			collection.item.add(ITEM_1.name, ITEM_1.method)
-			collection.item.add(ITEM_2.name, ITEM_2.method)
-			collection.item.add(ITEM_3.name, ITEM_3.method)
+			collection.item.add(ITEM_1.name, ITEM_1.props)
+			collection.item.add(ITEM_2.name, ITEM_2.props)
+			collection.item.add(ITEM_3.name, ITEM_3.props)
 			expect(collection.collection.item).toHaveLength(3)
 		})
 

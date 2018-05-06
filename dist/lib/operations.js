@@ -1,10 +1,18 @@
-'use strict';
+'use strict'
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+Object.defineProperty(exports, '__esModule', {
+	value: true
+})
 
-var _util = require('./../helper/util');
+var _typeof2 = require('babel-runtime/helpers/typeof')
+
+var _typeof3 = _interopRequireDefault(_typeof2)
+
+var _util = require('./../helper/util')
+
+function _interopRequireDefault(obj) {
+	return obj && obj.__esModule ? obj : { default: obj }
+}
 
 /**
  * Operations
@@ -13,82 +21,123 @@ var _util = require('./../helper/util');
  * @param {string} stringKey The key to which find items by
  * @returns {{findIndex: Function, findWith: (function(Function)), findBy: Function, find: Function, has: Function, remove: Function}}
  */
-const operations = (array, stringKey = 'name') => {
-    const o = {};
+var operations = function operations(array) {
+	var stringKey =
+		arguments.length > 1 && arguments[1] !== undefined
+			? arguments[1]
+			: 'name'
 
-    /**
-     * Find's an item's index in the list
-     *
-     * @param {string} identifier The item identifier value
-     * @param {object[]} target The list to perform the search on, if not provided the default list will be used
-     * @returns {number} The found item index or -1
-     */
-    o.findIndex = (identifier, target = null) => (target || array).findIndex(value => value[stringKey] === ensureStringValue(identifier, stringKey));
+	var o = {}
 
-    /**
-     * Finds an item using a callback function
-     *
-     * @param {function} callback The callback function to call for each item, this function should return true if you found the item and false otherwise
-     */
-    o.findWith = callback => array.find(callback);
+	/**
+	 * Find's an item's index in the list
+	 *
+	 * @param {string} identifier The item identifier value
+	 * @param {object[]} target The list to perform the search on, if not provided the default list will be used
+	 * @returns {number} The found item index or -1
+	 */
+	o.findIndex = function(identifier) {
+		var target =
+			arguments.length > 1 && arguments[1] !== undefined
+				? arguments[1]
+				: null
+		return (target || array).findIndex(function(value) {
+			return value[stringKey] === ensureStringValue(identifier, stringKey)
+		})
+	}
 
-    /**
-     * Find's an item by one of the item keys of your choice
-     *
-     * @param {string} by The key to look for in the item
-     * @param {string} value The value of the key
-     * @returns {object|null} The found object or null
-     */
-    o.findBy = (by, value) => (0, _util.recursify)(array, by, value);
+	/**
+	 * Finds an item using a callback function
+	 *
+	 * @param {function} callback The callback function to call for each item, this function should return true if you found the item and false otherwise
+	 */
+	o.findWith = function(callback) {
+		return array.find(callback)
+	}
 
-    /**
-     * Finds an item by the name
-     *
-     * @params {string} identifier The search identifier (eg: name, id)
-     * @returns {object} The found item object or null
-     */
-    o.find = identifier => (0, _util.recursify)(array, stringKey, ensureStringValue(identifier, stringKey));
+	/**
+	 * Find's an item by one of the item keys of your choice
+	 *
+	 * @param {string} by The key to look for in the item
+	 * @param {string} value The value of the key
+	 * @returns {object|null} The found object or null
+	 */
+	o.findBy = function(by, value) {
+		return (0, _util.recursify)(array, by, value)
+	}
 
-    /**
-     * Checks if an item exists
-     *
-     * @param {string} identifier The item name
-     * @returns {object} True if the item exists fals otherwise
-     */
-    o.has = identifier => (0, _util.recursify)(array, stringKey, ensureStringValue(identifier, stringKey)) !== null;
+	/**
+	 * Finds an item by the name
+	 *
+	 * @params {string} identifier The search identifier (eg: name, id)
+	 * @returns {object} The found item object or null
+	 */
+	o.find = function(identifier) {
+		return (0, _util.recursify)(
+			array,
+			stringKey,
+			ensureStringValue(identifier, stringKey)
+		)
+	}
 
-    /**
-     * Removes an item from an specific folder
-     *
-     * @param {string} identifier The item identifier
-     * @param {string|null} from The folder name
-     * @returns {*}
-     */
-    o.removeFrom = (identifier, from) => {
-        const found = o.find(from);
-        if (found && found.hasOwnProperty('item')) {
-            const index = o.findIndex(identifier, found.item);
-            return index > -1 ? found.item.splice(index, 1) : [];
-        }
-        return [];
-    };
+	/**
+	 * Checks if an item exists
+	 *
+	 * @param {string} identifier The item name
+	 * @returns {object} True if the item exists fails otherwise
+	 */
+	o.has = function(identifier) {
+		return (
+			(0, _util.recursify)(
+				array,
+				stringKey,
+				ensureStringValue(identifier, stringKey)
+			) !== null
+		)
+	}
 
-    /**
-     * Removes an item from the list
-     *
-     * @param {string} identifier The item identifier
-     * @param {string|null} parent The item identifier
-     */
-    o.remove = (identifier, parent = null) => {
-        if (parent) {
-            return o.removeFrom(ensureStringValue(identifier, stringKey), parent);
-        }
-        const found = o.findIndex(ensureStringValue(identifier, stringKey));
-        return found > -1 ? array.splice(found, found + 1) : null;
-    };
+	/**
+	 * Removes an item from an specific folder
+	 *
+	 * @param {string} identifier The item identifier
+	 * @param {string|null} from The folder name
+	 * @returns {*}
+	 */
+	o.removeFrom = function(identifier, from) {
+		var found = o.find(from)
+		if (found && found.hasOwnProperty('item')) {
+			var index = o.findIndex(identifier, found.item)
+			return index > -1 ? found.item.splice(index, 1) : []
+		}
+		return []
+	}
 
-    return o;
-};
+	/**
+	 * Removes an item from the list
+	 *
+	 * @param {string} identifier The item identifier
+	 * @param {string|null} parent The item identifier
+	 */
+	o.remove = function(identifier) {
+		var parent =
+			arguments.length > 1 && arguments[1] !== undefined
+				? arguments[1]
+				: null
+
+		if (parent) {
+			return o.removeFrom(
+				ensureStringValue(identifier, stringKey),
+				parent
+			)
+		}
+		var found = o.findIndex(ensureStringValue(identifier, stringKey))
+		var results = found > -1 ? array.splice(found, 1) : null
+		console.log('FOUND', identifier, found, results)
+		return results
+	}
+
+	return o
+}
 
 /**
  * Ensure's the value is a string
@@ -97,8 +146,15 @@ const operations = (array, stringKey = 'name') => {
  * @param {string} key If object, use this key to get the string value
  * @returns {string} The string value
  */
-const ensureStringValue = (object, key) =>
-// @todo do a better object type check here
-typeof object === 'object' ? object[key] : object;
+var ensureStringValue = function ensureStringValue(object, key) {
+	return (
+		// @todo do a better object type check here
+		(typeof object === 'undefined'
+			? 'undefined'
+			: (0, _typeof3.default)(object)) === 'object'
+			? object[key]
+			: object
+	)
+}
 
-exports.default = operations;
+exports.default = operations
