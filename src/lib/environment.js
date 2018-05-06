@@ -41,5 +41,4 @@ const add = environment =>
 		environment.values.push(variable)
 	}
 
-
 export default environment
