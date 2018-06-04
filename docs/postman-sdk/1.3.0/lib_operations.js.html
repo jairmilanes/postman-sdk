@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Postman SDK - An easy way to integrate sharing documentation and more into your development environment - Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link id="google-font" href="https://fonts.googleapis.com/css?family=Roboto+Mono|Cutive+Mono|Roboto:300,400,700" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="styles/highlight-themes/current.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/collapsible.css">
+  <link type="text/css" rel="stylesheet" href="styles/style-switcher.css">
+  <link type="text/css" rel="stylesheet" href="styles/selectric.css">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <script src="https://embed.runkit.com"></script>
+  <style id="style-switcher-styles">
+    nav {
+        background: #282c34;
+    }
+    .hljs {
+        background: #1d2027;
+    }
+    .nav-container > ul > li.active a {
+        color: #dcdcdc;
+    }
+    .nav-container > ul > li.active a:hover {
+        color: #f78200;
+    }
+    .nav-container > ul > li.active ul {
+        border-color: #f78200;
+    }
+    h4.name {
+        color: #f78200;
+    }
+    .params > div > code, .params > div > em {
+        color: #f78200;
+    }
+    a, a:active {
+        color: #f78200;
+    }
+    .hljs-doctag, .hljs-keyword, .hljs-formula {
+        color: #f78200;
+    }
+    nav ul a:hover, nav ul a:active {
+        color: #f78200;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header-fixed">
+      <h1>
+        <a href="index.html" title="modernTemplate.title">
+            
+                <img alt="Postman SDK" src="https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png" />
+            
+            Postman SDK
+        </a>
+      </h1>
+      <div class="center-header">
+          <ul>
+            
+          </ul>
+      </div>
+      <div class="right-header">
+           
+                <a href="https://github.com" title="View it on Github" style="">
+                    <i class="fab fa-github-alt"></i>
+                </a>
+           
+                <a href="https://github.com" title="View it on NPM" style="font-size: 19px">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </a>
+           
+      </div>
+  </header>
+
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <nav>
+    <div id="menu-container" class="scrollbar-inner">
+        <div class="nav-container">
+            <h3>Classes</h3><ul><li id="Client-nav"><a href="Client.html">Client</a><ul class='methods'><li data-type="method" id="Client-delete-nav"><a href="Client.html#delete">delete</a></li><li data-type="method" id="Client-get-nav"><a href="Client.html#get">get</a></li><li data-type="method" id="Client-post-nav"><a href="Client.html#post">post</a></li><li data-type="method" id="Client-put-nav"><a href="Client.html#put">put</a></li></ul></li><li id="CollectionManager-nav"><a href="CollectionManager.html">CollectionManager</a><ul class='methods'><li data-type="method" id="CollectionManager-find-nav"><a href="CollectionManager.html#find">find</a></li><li data-type="method" id="CollectionManager-findBy-nav"><a href="CollectionManager.html#findBy">findBy</a></li><li data-type="method" id="CollectionManager-findIndex-nav"><a href="CollectionManager.html#findIndex">findIndex</a></li><li data-type="method" id="CollectionManager-findWith-nav"><a href="CollectionManager.html#findWith">findWith</a></li><li data-type="method" id="CollectionManager-has-nav"><a href="CollectionManager.html#has">has</a></li><li data-type="method" id="CollectionManager-remove-nav"><a href="CollectionManager.html#remove">remove</a></li><li data-type="method" id="CollectionManager-removeFrom-nav"><a href="CollectionManager.html#removeFrom">removeFrom</a></li><li data-type="method" id="CollectionManager-toJSON-nav"><a href="CollectionManager.html#toJSON">toJSON</a></li></ul></li><li id="EnvironmentManager-nav"><a href="EnvironmentManager.html">EnvironmentManager</a><ul class='methods'><li data-type="method" id="EnvironmentManager-add-nav"><a href="EnvironmentManager.html#add">add</a></li><li data-type="method" id="EnvironmentManager-find-nav"><a href="EnvironmentManager.html#find">find</a></li><li data-type="method" id="EnvironmentManager-findBy-nav"><a href="EnvironmentManager.html#findBy">findBy</a></li><li data-type="method" id="EnvironmentManager-findIndex-nav"><a href="EnvironmentManager.html#findIndex">findIndex</a></li><li data-type="method" id="EnvironmentManager-findWith-nav"><a href="EnvironmentManager.html#findWith">findWith</a></li><li data-type="method" id="EnvironmentManager-has-nav"><a href="EnvironmentManager.html#has">has</a></li><li data-type="method" id="EnvironmentManager-remove-nav"><a href="EnvironmentManager.html#remove">remove</a></li><li data-type="method" id="EnvironmentManager-removeFrom-nav"><a href="EnvironmentManager.html#removeFrom">removeFrom</a></li><li data-type="method" id="EnvironmentManager-toJSON-nav"><a href="EnvironmentManager.html#toJSON">toJSON</a></li></ul></li></ul><h3 id="global-nav"><a href="global.html">Global</a></h3>
+        </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        lib/operations.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>import { recursify, ensureStringValue } from './../helper/util'
+import cloneDeep from "lodash.clonedeep";
+
+/**
+ * Operations
+ * @ignore
+ */
+class Operations {
+
+    /**
+	 * The key which to identify an object in the array
+	 * @ignore
+     */
+	key;
+
+    /**
+	 * The array containing the objects
+	 * @ignore
+     */
+	array;
+
+    /**
+     * Creates a new Operations instance
+     *
+	 * @param {string} key The key which to identify each object in the array
+	 * @param {object[]} [array=] An array with objects to preload
+     */
+	constructor(key, array) {
+        this.key = key
+		this.array = array || []
+	}
+	/**
+	 * Find's an object's index in the list using the default identifier
+	 *
+	 * @example
+	 * // Look for an object using a value
+     * const index = manager.findIndex('VALUE')
+	 * // Will log the variable index inside the variables array
+	 * console.log(index)
+	 *
+	 * // Look for an object using an object with the key identifier
+	 * const index = manager.findIndex({name: 'VALUE'})
+	 * // Will log the variable index inside the variables array
+     * console.log(index)
+	 *
+	 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+	 * @param {object[]} [array=] An alternative array to look for the index in. This is mostly used by the .remove in order to find the objects inside folders (or parents)
+	 * @returns {number} The found item index or -1
+	 */
+	findIndex(identifier, array) {
+		return (array || this.array).findIndex(
+            value =>
+                value[this.key] === ensureStringValue(identifier, this.key)
+        )
+    }
+
+	/**
+	 * Finds an object using a callback function
+	 *
+	 * @example
+     * const index = manager.findWith((resource) => resource.property === 'variable_value')
+     *
+     * // Will log the found variable object
+     * console.log(variable)
+	 *
+	 * @param {function} callback The callback function to call for each item, this function should return true if you found the item and false otherwise
+	 * @returns {object} The found resource
+	 */
+	findWith(callback) {
+		return this.array.find(callback)
+    }
+
+	/**
+	 * Find's the first object by the object key of your choice
+	 *
+	 * @example
+     * const resource = manager.findBy('property_name', false)
+     *
+     * // Will log the found object
+     * console.log(resource)
+	 *
+	 * @param {string} by The key to look for in the item
+	 * @param {string} value The value of the key
+	 * @returns {object|null} The found object or null
+	 */
+    findBy(by, value) {
+    	return recursify(this.array, by, value)
+    }
+
+	/**
+	 * Finds an object using the default identifier
+	 *
+	 * @example
+     * const resource = manager.find('VALUE')
+     *
+     * // Will log the found object
+     * console.log(resource)
+	 *
+	 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+	 * @returns {object|null} The found item object or null
+	 */
+    find(identifier) {
+		return recursify(this.array, this.key, ensureStringValue(identifier, this.key))
+    }
+
+	/**
+	 * Checks if an object exists
+	 *
+	 * @example
+     * const exists = manager.has('VALUE')
+     *
+     * // Will log true if it finds the resource or false otherwise
+     * console.log(exists)
+	 *
+	 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+	 * @returns {boolean} True if the item exists fails otherwise
+	 */
+    has(identifier) {
+		return recursify(
+            this.array,
+            this.key,
+			ensureStringValue(identifier, this.key)
+		) !== null
+    }
+
+	/**
+	 * Removes an object from an specific folder
+	 *
+	 * @example
+     * const exists = manager.removeFrom('VALUE')
+     *
+     * // Will log true if it finds the resource or false otherwise
+     * console.log(exists)
+	 *
+	 * @param {string} identifier The item identifier
+	 * @param {(string|null)} from The folder name
+	 * @returns {object}
+	 */
+	removeFrom(identifier, from) {
+		const found = this.find(from)
+		if (found &amp;&amp; found.hasOwnProperty('item')) {
+			const index = this.findIndex(identifier, found.item)
+			return index > -1 ? found.item.splice(index, 1) : []
+		}
+		return []
+	}
+
+	/**
+	 * Removes an object from the list
+	 *
+	 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+	 * @param {string} [parent] The item parent identifier value
+	 */
+    remove(identifier, parent) {
+		if (parent) {
+			return this.removeFrom(identifier, parent)
+		}
+		const found = this.findIndex(identifier)
+        return found > -1 ? this.array.splice(found, 1) : null
+	}
+
+    /**
+     * Returns a object representation of the current instance
+	 *
+     * @returns {*} The array of objects
+     */
+    toJSON() {
+        return cloneDeep(this.array)
+    }
+}
+
+export default Operations</code></pre>
+  </article>
+</section>
+
+    
+
+
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+  </footer>
+
+    
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+  <script src="scripts/scrollbar.js"></script>
+  <script src="scripts/collapsible.js"></script>
+  <script src="scripts/jquery.selectric.min.js"></script>
+  <script src="scripts/clipboard.min.js"></script>
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  
+  <script>
+      $(function () {
+          $('#menu-container').scrollbar();
+
+          
+      });
+    </script>
+</body>
+</html>

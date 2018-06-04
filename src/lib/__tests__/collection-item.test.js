@@ -1,5 +1,4 @@
-import getUuidByString from 'uuid-by-string'
-import Collection from './../collection'
+import CollectionManager from '../../collection-manager'
 
 import { ITEM_1, ITEM_2, ITEM_3, ITEM_4 } from '../__mocks__/mocked-items'
 import { FOLDER_1, FOLDER_2, FOLDER_3 } from '../__mocks__/mocked-folders'
@@ -18,38 +17,36 @@ export const METHODS = [
 ]
 
 describe('Collection Item:', () => {
-	const collection = Collection('Test Collection')
+	const collection = new CollectionManager('Test Collection')
 	collection.item.add(ITEM_1.name, ITEM_1.props)
 	const item = collection.item.find(ITEM_1.name)
 
 	describe('Item: ', () => {
-		it('should contain all methods', () => {
-			expect(Object.keys(collection.item)).toMatchObject(METHODS)
+		it('should contain all item methods', () => {
+			expect(typeof collection.item.add).toEqual('function')
+			expect(typeof collection.item.findIndex).toEqual('function')
+			expect(typeof collection.item.findWith).toEqual('function')
+			expect(typeof collection.item.findBy).toEqual('function')
+			expect(typeof collection.item.find).toEqual('function')
+			expect(typeof collection.item.has).toEqual('function')
+			expect(typeof collection.item.removeFrom).toEqual('function')
+			expect(typeof collection.item.remove).toEqual('function')
+		})
+
+		it('should contain all event methods', () => {
+			expect(typeof collection.event.add).toEqual('function')
+			expect(typeof collection.event.findIndex).toEqual('function')
+			expect(typeof collection.event.findWith).toEqual('function')
+			expect(typeof collection.event.findBy).toEqual('function')
+			expect(typeof collection.event.find).toEqual('function')
+			expect(typeof collection.event.has).toEqual('function')
+			expect(typeof collection.event.removeFrom).toEqual('function')
+			expect(typeof collection.event.remove).toEqual('function')
 		})
 
 		it('should contain all properties', () => {
 			expect(Object.keys(item).sort()).toMatchObject(
-				[
-					'id',
-					'name',
-					'request',
-					'response',
-					'event',
-					'addHeader',
-					'findHeader',
-					'findHeaderBy',
-					'findHeaderWith',
-					'findHeaderIndex',
-					'hasHeader',
-					'removeHeader',
-					'addEvent',
-					'findEventIndex',
-					'findEventWith',
-					'findEventBy',
-					'findEvent',
-					'hasEvent',
-					'removeEvent'
-				].sort()
+				['name', 'id', 'request', 'response', 'event'].sort()
 			)
 		})
 
@@ -93,7 +90,7 @@ describe('Collection Item:', () => {
 		it('Should add folders', () => {
 			collection.item.addFolder(FOLDER_1.name)
 			collection.item.addFolder(FOLDER_2.name)
-			expect(collection.collection.item).toHaveLength(3)
+			expect(collection.item.toJSON()).toHaveLength(3)
 			expect(collection.item.find(FOLDER_1.name)).not.toHaveProperty(
 				'request'
 			)
@@ -133,7 +130,7 @@ describe('Collection Item:', () => {
 		it('Should add new item', () => {
 			collection.item.add(ITEM_2.name, ITEM_2.props)
 			collection.item.add(ITEM_3.name, ITEM_3.props)
-			expect(collection.collection.item).toHaveLength(4)
+			expect(collection.item.toJSON()).toHaveLength(4)
 		})
 
 		it('Should add new item to folder', () => {
@@ -178,7 +175,7 @@ describe('Collection Item:', () => {
 		it('Should remove items from collection', () => {
 			collection.item.remove(ITEM_1.name)
 			collection.item.remove(ITEM_3.name)
-			expect(collection.collection.item).toHaveLength(2)
+			expect(collection.item.toJSON()).toHaveLength(2)
 			expect(collection.item.findBy('name', ITEM_1.name)).toBeNull()
 			expect(collection.item.findBy('name', ITEM_3.name)).toBeNull()
 			expect(collection.item.findBy('name', ITEM_2.name).id).toEqual(

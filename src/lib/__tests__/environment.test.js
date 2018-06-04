@@ -1,15 +1,4 @@
-import Environment from '../environment'
-
-export const METHODS = [
-	'add',
-	'findIndex',
-	'findWith',
-	'findBy',
-	'find',
-	'has',
-	'removeFrom',
-	'remove'
-]
+import EnvironmentMananger from '../../environment-manager'
 
 const VARIABLE_1 = {
 	key: 'test 1',
@@ -40,28 +29,27 @@ const DUMMY_VARIABLE = {
 }
 
 describe('Environment:', () => {
-	const environment = Environment('test')
+	const environment = new EnvironmentMananger('test')
 
 	describe('Create New Environment', () => {
-		it('Should create a new environment object', () => {
-			expect(environment).toHaveProperty('environment')
-		})
-
 		it('Should contain the correct methods', () => {
-			expect(Object.keys(environment)).toMatchObject([
-				'environment',
-				...METHODS
-			])
-			expect(Object.keys(environment)).toHaveLength(9)
+			expect(typeof environment.add).toEqual('function')
+			expect(typeof environment.findIndex).toEqual('function')
+			expect(typeof environment.findWith).toEqual('function')
+			expect(typeof environment.findBy).toEqual('function')
+			expect(typeof environment.find).toEqual('function')
+			expect(typeof environment.has).toEqual('function')
+			expect(typeof environment.removeFrom).toEqual('function')
+			expect(typeof environment.remove).toEqual('function')
 		})
 
 		it('Should contain the correct properties', () => {
-			expect(environment.environment).toHaveProperty('name')
-			expect(environment.environment).toHaveProperty('values')
+			expect(environment.toJSON().environment).toHaveProperty('name')
+			expect(environment.toJSON().environment).toHaveProperty('values')
 		})
 
 		it('Should contain 0 items', () => {
-			expect(environment.environment.values).toHaveLength(0)
+			expect(environment.toJSON().environment.values).toHaveLength(0)
 		})
 	})
 
@@ -70,7 +58,7 @@ describe('Environment:', () => {
 			environment.add(VARIABLE_1)
 			environment.add(VARIABLE_2)
 			environment.add(VARIABLE_3)
-			expect(environment.environment.values).toHaveLength(3)
+			expect(environment.toJSON().environment.values).toHaveLength(3)
 		})
 
 		it('Should find a variable', () => {
@@ -84,7 +72,7 @@ describe('Environment:', () => {
 		it('Should remove variables to the environment', () => {
 			environment.remove(VARIABLE_1)
 			environment.remove(VARIABLE_2)
-			expect(environment.environment.values).toHaveLength(1)
+			expect(environment.toJSON().environment.values).toHaveLength(1)
 			expect(environment.find(VARIABLE_2)).toBeNull()
 			expect(environment.find(VARIABLE_1)).toBeNull()
 			expect(environment.find(VARIABLE_3)).toMatchObject(VARIABLE_3)

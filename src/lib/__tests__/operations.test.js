@@ -1,4 +1,4 @@
-import Operations from './../operations'
+import Operations from '../operations'
 import {
 	ITEM_1,
 	ITEM_2,
@@ -20,10 +20,18 @@ describe('Postman Collection Builder Tests', () => {
 		'removeFrom',
 		'remove'
 	]
-	const operations = Operations(ARRAY)
+	const operations = new Operations('name', ARRAY)
+
+	console.log('OPERATIONS', operations)
 
 	it('Should contain the defined methods', () => {
-		expect(Object.keys(operations)).toMatchObject(METHODS)
+		expect(typeof operations.findIndex).toEqual('function')
+		expect(typeof operations.findWith).toEqual('function')
+		expect(typeof operations.findBy).toEqual('function')
+		expect(typeof operations.find).toEqual('function')
+		expect(typeof operations.has).toEqual('function')
+		expect(typeof operations.removeFrom).toEqual('function')
+		expect(typeof operations.remove).toEqual('function')
 	})
 
 	describe('findIndex:', () => {
@@ -84,7 +92,7 @@ describe('Postman Collection Builder Tests', () => {
 		})
 
 		it('Should return null if the array is empty', () => {
-			const operations = Operations([])
+			const operations = new Operations('name', [])
 			expect(operations.has('test 10')).toBeFalsy()
 		})
 	})

@@ -3,7 +3,9 @@ if (!process.env.POSTMAN_API_KEY) {
 }
 
 import request from 'request'
-import { Collections } from './../index'
+import Client from './../client'
+
+const client = new Client('collections')
 
 const getPostResponseMock = () => ({
 	collection: {
@@ -43,7 +45,7 @@ describe('Postman SDK Integration Tests', async () => {
 		request.post = jest.fn((options, callback) =>
 			callback(null, {}, getPostResponseMock())
 		)
-		const results = await Collections.post(collectionData)
+		const results = await client.post(collectionData)
 		expect(request.post).toHaveBeenCalled()
 		expect(request.post).toHaveBeenCalledWith(
 			getRequestData('POST', target, collectionData),
@@ -63,7 +65,7 @@ describe('Postman SDK Integration Tests', async () => {
 			callback(null, {}, putResponse)
 		)
 		const putData = Object.assign({}, collectionData, updatedData)
-		const results = await Collections.put(putData.info._postman_id, putData)
+		const results = await client.put(putData.info._postman_id, putData)
 
 		expect(request.put).toHaveBeenCalled()
 		expect(request.put).toHaveBeenCalledWith(
@@ -78,7 +80,7 @@ describe('Postman SDK Integration Tests', async () => {
 		request.get = jest.fn((options, callback) =>
 			callback(null, {}, getResponse)
 		)
-		const results = await Collections.get(collectionData.info._postman_id)
+		const results = await client.get(collectionData.info._postman_id)
 
 		expect(request.get).toHaveBeenCalled()
 		expect(request.get).toHaveBeenCalledWith(
@@ -93,9 +95,7 @@ describe('Postman SDK Integration Tests', async () => {
 		request.delete = jest.fn((options, callback) =>
 			callback(null, {}, delResponse)
 		)
-		const results = await Collections.destroy(
-			collectionData.info._postman_id
-		)
+		const results = await client.delete(collectionData.info._postman_id)
 
 		expect(request.delete).toHaveBeenCalled()
 		expect(request.delete).toHaveBeenCalledWith(
@@ -116,8 +116,8 @@ describe('Postman SDK Integration Tests', async () => {
 			callback(error, undefined, null)
 		)
 
-		expect(
-			Collections.destroy(collectionData.info._postman_id)
-		).rejects.toThrow(error)
+		expect(client.delete(collectionData.info._postman_id)).rejects.toThrow(
+			error
+		)
 	})
 })

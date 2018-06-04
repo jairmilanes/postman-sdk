@@ -4,11 +4,19 @@ Object.defineProperty(exports, '__esModule', {
 	value: true
 })
 
-var _typeof2 = require('babel-runtime/helpers/typeof')
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck')
 
-var _typeof3 = _interopRequireDefault(_typeof2)
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2)
+
+var _createClass2 = require('babel-runtime/helpers/createClass')
+
+var _createClass3 = _interopRequireDefault(_createClass2)
 
 var _util = require('./../helper/util')
+
+var _lodash = require('lodash.clonedeep')
+
+var _lodash2 = _interopRequireDefault(_lodash)
 
 function _interopRequireDefault(obj) {
 	return obj && obj.__esModule ? obj : { default: obj }
@@ -16,145 +24,207 @@ function _interopRequireDefault(obj) {
 
 /**
  * Operations
- *
- * @param {array} array The collection to manage
- * @param {string} stringKey The key to which find items by
- * @returns {{findIndex: Function, findWith: (function(Function)), findBy: Function, find: Function, has: Function, remove: Function}}
+ * @ignore
  */
-var operations = function operations(array) {
-	var stringKey =
-		arguments.length > 1 && arguments[1] !== undefined
-			? arguments[1]
-			: 'name'
-
-	var o = {}
+var Operations = (function() {
+	/**
+	 * Creates a new Operations instance
+	 *
+	 * @param {string} key The key which to identify each object in the array
+	 * @param {object[]} [array=] An array with objects to preload
+	 */
 
 	/**
-	 * Find's an item's index in the list
+	 * The key which to identify an object in the array
+	 * @ignore
+	 */
+	function Operations(key, array) {
+		;(0, _classCallCheck3.default)(this, Operations)
+
+		this.key = key
+		this.array = array || []
+	}
+	/**
+	 * Find's an object's index in the list using the default identifier
 	 *
-	 * @param {string} identifier The item identifier value
-	 * @param {object[]} target The list to perform the search on, if not provided the default list will be used
+	 * @example
+	 * // Look for an object using a value
+	 * const index = manager.findIndex('VALUE')
+	 * // Will log the variable index inside the variables array
+	 * console.log(index)
+	 *
+	 * // Look for an object using an object with the key identifier
+	 * const index = manager.findIndex({name: 'VALUE'})
+	 * // Will log the variable index inside the variables array
+	 * console.log(index)
+	 *
+	 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+	 * @param {object[]} [array=] An alternative array to look for the index in. This is mostly used by the .remove in order to find the objects inside folders (or parents)
 	 * @returns {number} The found item index or -1
 	 */
-	o.findIndex = function(identifier) {
-		var target =
-			arguments.length > 1 && arguments[1] !== undefined
-				? arguments[1]
-				: null
-		return (target || array).findIndex(function(value) {
-			return value[stringKey] === ensureStringValue(identifier, stringKey)
-		})
-	}
 
 	/**
-	 * Finds an item using a callback function
-	 *
-	 * @param {function} callback The callback function to call for each item, this function should return true if you found the item and false otherwise
+	 * The array containing the objects
+	 * @ignore
 	 */
-	o.findWith = function(callback) {
-		return array.find(callback)
-	}
 
-	/**
-	 * Find's an item by one of the item keys of your choice
-	 *
-	 * @param {string} by The key to look for in the item
-	 * @param {string} value The value of the key
-	 * @returns {object|null} The found object or null
-	 */
-	o.findBy = function(by, value) {
-		return (0, _util.recursify)(array, by, value)
-	}
+	;(0, _createClass3.default)(Operations, [
+		{
+			key: 'findIndex',
+			value: function findIndex(identifier, array) {
+				var _this = this
 
-	/**
-	 * Finds an item by the name
-	 *
-	 * @params {string} identifier The search identifier (eg: name, id)
-	 * @returns {object} The found item object or null
-	 */
-	o.find = function(identifier) {
-		return (0, _util.recursify)(
-			array,
-			stringKey,
-			ensureStringValue(identifier, stringKey)
-		)
-	}
+				return (array || this.array).findIndex(function(value) {
+					return (
+						value[_this.key] ===
+						(0, _util.ensureStringValue)(identifier, _this.key)
+					)
+				})
+			}
 
-	/**
-	 * Checks if an item exists
-	 *
-	 * @param {string} identifier The item name
-	 * @returns {object} True if the item exists fails otherwise
-	 */
-	o.has = function(identifier) {
-		return (
-			(0, _util.recursify)(
-				array,
-				stringKey,
-				ensureStringValue(identifier, stringKey)
-			) !== null
-		)
-	}
+			/**
+			 * Finds an object using a callback function
+			 *
+			 * @example
+			 * const index = manager.findWith((resource) => resource.property === 'variable_value')
+			 *
+			 * // Will log the found variable object
+			 * console.log(variable)
+			 *
+			 * @param {function} callback The callback function to call for each item, this function should return true if you found the item and false otherwise
+			 * @returns {object} The found resource
+			 */
+		},
+		{
+			key: 'findWith',
+			value: function findWith(callback) {
+				return this.array.find(callback)
+			}
 
-	/**
-	 * Removes an item from an specific folder
-	 *
-	 * @param {string} identifier The item identifier
-	 * @param {string|null} from The folder name
-	 * @returns {*}
-	 */
-	o.removeFrom = function(identifier, from) {
-		var found = o.find(from)
-		if (found && found.hasOwnProperty('item')) {
-			var index = o.findIndex(identifier, found.item)
-			return index > -1 ? found.item.splice(index, 1) : []
+			/**
+			 * Find's the first object by the object key of your choice
+			 *
+			 * @example
+			 * const resource = manager.findBy('property_name', false)
+			 *
+			 * // Will log the found object
+			 * console.log(resource)
+			 *
+			 * @param {string} by The key to look for in the item
+			 * @param {string} value The value of the key
+			 * @returns {object|null} The found object or null
+			 */
+		},
+		{
+			key: 'findBy',
+			value: function findBy(by, value) {
+				return (0, _util.recursify)(this.array, by, value)
+			}
+
+			/**
+			 * Finds an object using the default identifier
+			 *
+			 * @example
+			 * const resource = manager.find('VALUE')
+			 *
+			 * // Will log the found object
+			 * console.log(resource)
+			 *
+			 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+			 * @returns {object|null} The found item object or null
+			 */
+		},
+		{
+			key: 'find',
+			value: function find(identifier) {
+				return (0, _util.recursify)(
+					this.array,
+					this.key,
+					(0, _util.ensureStringValue)(identifier, this.key)
+				)
+			}
+
+			/**
+			 * Checks if an object exists
+			 *
+			 * @example
+			 * const exists = manager.has('VALUE')
+			 *
+			 * // Will log true if it finds the resource or false otherwise
+			 * console.log(exists)
+			 *
+			 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+			 * @returns {boolean} True if the item exists fails otherwise
+			 */
+		},
+		{
+			key: 'has',
+			value: function has(identifier) {
+				return (
+					(0, _util.recursify)(
+						this.array,
+						this.key,
+						(0, _util.ensureStringValue)(identifier, this.key)
+					) !== null
+				)
+			}
+
+			/**
+			 * Removes an object from an specific folder
+			 *
+			 * @example
+			 * const exists = manager.removeFrom('VALUE')
+			 *
+			 * // Will log true if it finds the resource or false otherwise
+			 * console.log(exists)
+			 *
+			 * @param {string} identifier The item identifier
+			 * @param {(string|null)} from The folder name
+			 * @returns {object}
+			 */
+		},
+		{
+			key: 'removeFrom',
+			value: function removeFrom(identifier, from) {
+				var found = this.find(from)
+				if (found && found.hasOwnProperty('item')) {
+					var index = this.findIndex(identifier, found.item)
+					return index > -1 ? found.item.splice(index, 1) : []
+				}
+				return []
+			}
+
+			/**
+			 * Removes an object from the list
+			 *
+			 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+			 * @param {string} [parent] The item parent identifier value
+			 */
+		},
+		{
+			key: 'remove',
+			value: function remove(identifier, parent) {
+				if (parent) {
+					return this.removeFrom(identifier, parent)
+				}
+				var found = this.findIndex(identifier)
+				return found > -1 ? this.array.splice(found, 1) : null
+			}
+
+			/**
+			 * Returns a object representation of the current instance
+			 *
+			 * @returns {*} The array of objects
+			 */
+		},
+		{
+			key: 'toJSON',
+			value: function toJSON() {
+				return (0, _lodash2.default)(this.array)
+			}
 		}
-		return []
-	}
+	])
+	return Operations
+})()
 
-	/**
-	 * Removes an item from the list
-	 *
-	 * @param {string} identifier The item identifier
-	 * @param {string|null} parent The item identifier
-	 */
-	o.remove = function(identifier) {
-		var parent =
-			arguments.length > 1 && arguments[1] !== undefined
-				? arguments[1]
-				: null
-
-		if (parent) {
-			return o.removeFrom(
-				ensureStringValue(identifier, stringKey),
-				parent
-			)
-		}
-		var found = o.findIndex(ensureStringValue(identifier, stringKey))
-		var results = found > -1 ? array.splice(found, 1) : null
-		console.log('FOUND', identifier, found, results)
-		return results
-	}
-
-	return o
-}
-
-/**
- * Ensure's the value is a string
- *
- * @param {object|string} object The object or string with the Key
- * @param {string} key If object, use this key to get the string value
- * @returns {string} The string value
- */
-var ensureStringValue = function ensureStringValue(object, key) {
-	return (
-		// @todo do a better object type check here
-		(typeof object === 'undefined'
-			? 'undefined'
-			: (0, _typeof3.default)(object)) === 'object'
-			? object[key]
-			: object
-	)
-}
-
-exports.default = operations
+exports.default = Operations

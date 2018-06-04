@@ -1,6 +1,6 @@
 {
 	"name": "postman-sdk",
-	"version": "1.4.0",
+	"version": "1.3.0",
 	"description":
 		"A Postman SDK that provides helpers to create collections & environments and to communicate with the latest Postman REST api.",
 	"homepage": "https://github.com/layoutzweb/postman-sdk",
@@ -16,9 +16,11 @@
 		"compile":
 			"babel --ignore node_modules --ignore __tests__ -d dist/ src/",
 		"test:u": "npm-run-all lint:js copy babel jest:u",
-		"build": "npm-run-all lint:js:fix jest compile",
+		"build": "npm-run-all lint:js:fix compile",
 		"pretty":
 			"prettier --config ./.prettierrc.yml --write \"{src,__{tests,mocks}__}/**/*.js\"",
+		"docs": "jsdoc src -r -c jsdoc.json -d docs --verbose",
+		"docco": "docco -o docco src/**/*.js",
 		"release:major":
 			"changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
 		"release:minor":
@@ -29,16 +31,11 @@
 	"keywords": [
 		"postman",
 		"sdk",
-		"postman",
 		"client",
 		"client",
-		"postman",
 		"api",
-		"postman",
 		"sdk",
-		"postman",
 		"rest",
-		"postman",
 		"server"
 	],
 	"author": "Jair Milanes Junior <jmilanes.dev@gmail.com>",
@@ -74,6 +71,8 @@
 		"istanbul": "^0.4.5",
 		"jest": "^22.3.0",
 		"jest-cli": "^22.3.0",
+		"jsdoc": "^3.5.5",
+		"jsdoc-chameleon-template": "^1.0.0",
 		"lint-staged": "^7.0.0",
 		"npm-run-all": "^4.0.2",
 		"prettier": "1.10.2",
@@ -81,6 +80,7 @@
 	},
 	"dependencies": {
 		"is-uuid": "^1.0.2",
+		"lodash.clonedeep": "^4.5.0",
 		"query-string": "^6.0.0",
 		"request": "^2.83.0",
 		"uuid-by-string": "^0.6.0"

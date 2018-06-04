@@ -19,3 +19,6 @@ src
 .eslintrc.yml
 .gitignore
 jest.config.json
+docs
+examples
+media

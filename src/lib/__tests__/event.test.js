@@ -1,18 +1,7 @@
 import getUuidByString from 'uuid-by-string'
-import Collection from './../collection'
-
+import CollectionManager from '../../collection-manager'
 const COLLECTION_NAME = 'Test Collection'
 const COLLECTION_VERSION = '1.0.0'
-
-export const METHODS = [
-	'add',
-	'findIndex',
-	'findWith',
-	'findBy',
-	'find',
-	'has',
-	'remove'
-]
 
 const event = {
 	name: 'test-event',
@@ -61,7 +50,7 @@ const newEvent = (name, type) => {
 	}
 }
 
-const collection = Collection(COLLECTION_NAME, COLLECTION_VERSION)
+const collection = new CollectionManager(COLLECTION_NAME, COLLECTION_VERSION)
 const eventOne = newEvent('event one', 'exec')
 const eventMockOne = newEventMock('event one', 'exec')
 const eventTwo = newEvent('event two', 'source')
@@ -71,16 +60,16 @@ describe('Events', () => {
 	describe('Operations: ', () => {
 		it('should add an event with exec script', () => {
 			collection.event.add(eventOne)
-			expect(collection.collection.event).toHaveLength(1)
-			expect(collection.collection.event[0].script).toHaveProperty('exec')
+			const object = collection.event.toJSON()
+			expect(object).toHaveLength(1)
+			expect(object[0].script).toHaveProperty('exec')
 		})
 
 		it('should add an event with source script', () => {
 			collection.event.add(eventTwo)
-			expect(collection.collection.event).toHaveLength(2)
-			expect(
-				collection.event.find(eventMockTwo.id).script
-			).toHaveProperty('source')
+			const object = collection.event.toJSON()
+			expect(object).toHaveLength(2)
+			expect(object[1].script).toHaveProperty('source')
 		})
 
 		it('Should add with default values if none is supplied', () => {
@@ -102,8 +91,12 @@ describe('Events', () => {
 		})
 
 		it('should contain the expected keys', () => {
-			expect(collection.collection.event[0]).toMatchObject(eventMockOne)
-			expect(collection.collection.event[1]).toMatchObject(eventMockTwo)
+			expect(collection.toJSON().collection.event[0]).toMatchObject(
+				eventMockOne
+			)
+			expect(collection.toJSON().collection.event[1]).toMatchObject(
+				eventMockTwo
+			)
 		})
 
 		it('Should find an event', () => {
@@ -119,7 +112,7 @@ describe('Events', () => {
 
 		it('Should remove events from collection', () => {
 			collection.event.remove(eventMockOne.id)
-			expect(collection.collection.event).toHaveLength(2)
+			expect(collection.toJSON().collection.event).toHaveLength(2)
 		})
 
 		it('Should NOT remove if not found', () => {

@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Postman SDK - An easy way to integrate sharing documentation and more into your development environment - Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link id="google-font" href="https://fonts.googleapis.com/css?family=Roboto+Mono|Cutive+Mono|Roboto:300,400,700" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="styles/highlight-themes/current.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/collapsible.css">
+  <link type="text/css" rel="stylesheet" href="styles/style-switcher.css">
+  <link type="text/css" rel="stylesheet" href="styles/selectric.css">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <script src="https://embed.runkit.com"></script>
+  <style id="style-switcher-styles">
+    nav {
+        background: #282c34;
+    }
+    .hljs {
+        background: #1d2027;
+    }
+    .nav-container > ul > li.active a {
+        color: #dcdcdc;
+    }
+    .nav-container > ul > li.active a:hover {
+        color: #f78200;
+    }
+    .nav-container > ul > li.active ul {
+        border-color: #f78200;
+    }
+    h4.name {
+        color: #f78200;
+    }
+    .params > div > code, .params > div > em {
+        color: #f78200;
+    }
+    a, a:active {
+        color: #f78200;
+    }
+    .hljs-doctag, .hljs-keyword, .hljs-formula {
+        color: #f78200;
+    }
+    nav ul a:hover, nav ul a:active {
+        color: #f78200;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header-fixed">
+      <h1>
+        <a href="index.html" title="modernTemplate.title">
+            
+                <img alt="Postman SDK" src="https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png" />
+            
+            Postman SDK
+        </a>
+      </h1>
+      <div class="center-header">
+          <ul>
+            
+          </ul>
+      </div>
+      <div class="right-header">
+           
+                <a href="https://github.com" title="View it on Github" style="">
+                    <i class="fab fa-github-alt"></i>
+                </a>
+           
+                <a href="https://github.com" title="View it on NPM" style="font-size: 19px">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </a>
+           
+      </div>
+  </header>
+
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <nav>
+    <div id="menu-container" class="scrollbar-inner">
+        <div class="nav-container">
+            <h3>Classes</h3><ul><li id="Client-nav"><a href="Client.html">Client</a><ul class='methods'><li data-type="method" id="Client-delete-nav"><a href="Client.html#delete">delete</a></li><li data-type="method" id="Client-get-nav"><a href="Client.html#get">get</a></li><li data-type="method" id="Client-post-nav"><a href="Client.html#post">post</a></li><li data-type="method" id="Client-put-nav"><a href="Client.html#put">put</a></li></ul></li><li id="CollectionManager-nav"><a href="CollectionManager.html">CollectionManager</a><ul class='methods'><li data-type="method" id="CollectionManager-find-nav"><a href="CollectionManager.html#find">find</a></li><li data-type="method" id="CollectionManager-findBy-nav"><a href="CollectionManager.html#findBy">findBy</a></li><li data-type="method" id="CollectionManager-findIndex-nav"><a href="CollectionManager.html#findIndex">findIndex</a></li><li data-type="method" id="CollectionManager-findWith-nav"><a href="CollectionManager.html#findWith">findWith</a></li><li data-type="method" id="CollectionManager-has-nav"><a href="CollectionManager.html#has">has</a></li><li data-type="method" id="CollectionManager-remove-nav"><a href="CollectionManager.html#remove">remove</a></li><li data-type="method" id="CollectionManager-removeFrom-nav"><a href="CollectionManager.html#removeFrom">removeFrom</a></li><li data-type="method" id="CollectionManager-toJSON-nav"><a href="CollectionManager.html#toJSON">toJSON</a></li></ul></li><li id="EnvironmentManager-nav"><a href="EnvironmentManager.html">EnvironmentManager</a><ul class='methods'><li data-type="method" id="EnvironmentManager-add-nav"><a href="EnvironmentManager.html#add">add</a></li><li data-type="method" id="EnvironmentManager-find-nav"><a href="EnvironmentManager.html#find">find</a></li><li data-type="method" id="EnvironmentManager-findBy-nav"><a href="EnvironmentManager.html#findBy">findBy</a></li><li data-type="method" id="EnvironmentManager-findIndex-nav"><a href="EnvironmentManager.html#findIndex">findIndex</a></li><li data-type="method" id="EnvironmentManager-findWith-nav"><a href="EnvironmentManager.html#findWith">findWith</a></li><li data-type="method" id="EnvironmentManager-has-nav"><a href="EnvironmentManager.html#has">has</a></li><li data-type="method" id="EnvironmentManager-remove-nav"><a href="EnvironmentManager.html#remove">remove</a></li><li data-type="method" id="EnvironmentManager-removeFrom-nav"><a href="EnvironmentManager.html#removeFrom">removeFrom</a></li><li data-type="method" id="EnvironmentManager-toJSON-nav"><a href="EnvironmentManager.html#toJSON">toJSON</a></li></ul></li></ul><h3 id="global-nav"><a href="global.html">Global</a></h3>
+        </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        EnvironmentManager
+      </h1>
+    
+
+    
+
+<section id="section-container">
+  <article>
+    <div class="container-overview">
+      
+        
+           <div class="class-description description">
+             <p>Creates a new environment instance and manage it's variables.</p>
+<p>You can add &amp; remove keys programmatically so it is easy to integrate into your build scripts and update them during deploys.</p>
+<p>Variables can be used inside collection items by referencing each variable as {{variable}} in your collection item properties.</p>
+<p>This environments can then be switched in the Postman SDK allowing to easily test different environments.</p>
+<p>Use this to create multiple environments instead of creating one collection item per environment.</p>
+           </div>
+        
+
+        
+
+
+  
+    <h2>Constructor</h2>
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#EnvironmentManager">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="EnvironmentManager">
+      <span class="type-signature"></span>new EnvironmentManager<span class="signature">(name)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Creates a new EnvironmentManager instance</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>name</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    
+)</em>
+          
+
+          
+
+          <p>The environment name</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="environment-manager.js.html">environment-manager.js</a>, <a href="environment-manager.js.html#line24">line 24</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+      <h3 class="subsection-title">Extends</h3>
+      
+
+
+  <ul>
+    <li><a href="Operations.html">Operations</a></li>
+  </ul>
+
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+      <h3 class="subsection-title">Methods</h3>
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#add">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="add">
+      <span class="type-signature"></span>.add<span class="signature">(key, value<span class="signature-attributes">opt</span>, type<span class="signature-attributes">opt</span>, enabled<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {number}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Adds a new variable to this environment.
+You can either provide a object containing all the properties or pass each one to the method call.</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>key</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    |
+
+    <span class="param-type">
+      object
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>The variable name or the variable object. If object is provided, ignore value</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>value</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+                &lt;optional><br>
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>The variable value, ig object was provided as the first parameter, this can be ignored</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>type</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+                &lt;optional><br>
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>The variable type (string, number, boolean)</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>enabled</code>
+               <em>(
+    <span class="param-type">
+      boolean
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+                &lt;optional><br>
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>A flag tallying if the variable is enabled or disabled by default</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="environment-manager.js.html">environment-manager.js</a>, <a href="environment-manager.js.html#line71">line 71</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#add-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="add-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const manager = new EnvironmentManager('MY_ENVIRONMENT')// Use single propertiesmanager.add('HOST', 'myhost.com', 'string', true)// Use property objectmanager.add({   key: 'HOST',   value: 'myhost.com',   type: 'string',   enabled: true})</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#find">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="find">
+      <span class="type-signature"></span>.find<span class="signature">(identifier)</span><span class="type-signature"> &rarr; {object|null}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Finds an object using the default identifier</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>identifier</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    |
+
+    <span class="param-type">
+      object
+    </span>
+
+    
+)</em>
+          
+
+          
+
+          <p>The item identifier value or an object containing the identifier key</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from">
+      <ul class="dummy">
+        <li>
+          <a href="Operations.html#find">Operations#find</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="lib_operations.js.html">lib/operations.js</a>, <a href="lib_operations.js.html#line102">line 102</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#find-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="find-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const resource = manager.find('VALUE')// Will log the found objectconsole.log(resource)</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#findBy">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="findBy">
+      <span class="type-signature"></span>.findBy<span class="signature">(by, value)</span><span class="type-signature"> &rarr; {object|null}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Find's the first object by the object key of your choice</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>by</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    
+)</em>
+          
+
+          
+
+          <p>The key to look for in the item</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>value</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    
+)</em>
+          
+
+          
+
+          <p>The value of the key</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from">
+      <ul class="dummy">
+        <li>
+          <a href="Operations.html#findBy">Operations#findBy</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="lib_operations.js.html">lib/operations.js</a>, <a href="lib_operations.js.html#line86">line 86</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#findBy-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="findBy-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const resource = manager.findBy('property_name', false)// Will log the found objectconsole.log(resource)</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#findIndex">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="findIndex">
+      <span class="type-signature"></span>.findIndex<span class="signature">(identifier, array=<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {number}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Find's an object's index in the list using the default identifier</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>identifier</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    |
+
+    <span class="param-type">
+      object
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>The item identifier value or an object containing the identifier key</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>array=</code>
+               <em>(
+    <span class="param-type">
+      Array.&lt;object>
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+                &lt;optional><br>
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>An alternative array to look for the index in. This is mostly used by the .remove in order to find the objects inside folders (or parents)</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from">
+      <ul class="dummy">
+        <li>
+          <a href="Operations.html#findIndex">Operations#findIndex</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="lib_operations.js.html">lib/operations.js</a>, <a href="lib_operations.js.html#line50">line 50</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#findIndex-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="findIndex-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>// Look for an object using a valueconst index = manager.findIndex('VALUE')// Will log the variable index inside the variables arrayconsole.log(index)// Look for an object using an object with the key identifierconst index = manager.findIndex({name: 'VALUE'})// Will log the variable index inside the variables arrayconsole.log(index)</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#findWith">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="findWith">
+      <span class="type-signature"></span>.findWith<span class="signature">(callback)</span><span class="type-signature"> &rarr; {object}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Finds an object using a callback function</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>callback</code>
+               <em>(
+    <span class="param-type">
+      function
+    </span>
+
+    
+)</em>
+          
+
+          
+
+          <p>The callback function to call for each item, this function should return true if you found the item and false otherwise</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from">
+      <ul class="dummy">
+        <li>
+          <a href="Operations.html#findWith">Operations#findWith</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="lib_operations.js.html">lib/operations.js</a>, <a href="lib_operations.js.html#line69">line 69</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#findWith-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="findWith-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const index = manager.findWith((resource) => resource.property === 'variable_value')// Will log the found variable objectconsole.log(variable)</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#has">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="has">
+      <span class="type-signature"></span>.has<span class="signature">(identifier)</span><span class="type-signature"> &rarr; {boolean}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Checks if an object exists</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>identifier</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    |
+
+    <span class="param-type">
+      object
+    </span>
+
+    
+)</em>
+          
+
+          
+
+          <p>The item identifier value or an object containing the identifier key</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from">
+      <ul class="dummy">
+        <li>
+          <a href="Operations.html#has">Operations#has</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="lib_operations.js.html">lib/operations.js</a>, <a href="lib_operations.js.html#line118">line 118</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#has-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="has-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const exists = manager.has('VALUE')// Will log true if it finds the resource or false otherwiseconsole.log(exists)</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#remove">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="remove">
+      <span class="type-signature"></span>.remove<span class="signature">(identifier, parent<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Removes an object from the list</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>identifier</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    |
+
+    <span class="param-type">
+      object
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>The item identifier value or an object containing the identifier key</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>parent</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+                &lt;optional><br>
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>The item parent identifier value</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from">
+      <ul class="dummy">
+        <li>
+          <a href="Operations.html#remove">Operations#remove</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="lib_operations.js.html">lib/operations.js</a>, <a href="lib_operations.js.html#line154">line 154</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#removeFrom">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="removeFrom">
+      <span class="type-signature"></span>.removeFrom<span class="signature">(identifier, from)</span><span class="type-signature"> &rarr; {object}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Removes an object from an specific folder</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>identifier</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    
+)</em>
+          
+
+          
+
+          <p>The item identifier</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>from</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    |
+
+    <span class="param-type">
+      null
+    </span>
+
+    
+)</em>
+          
+
+          
+
+          <p>The folder name</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from">
+      <ul class="dummy">
+        <li>
+          <a href="Operations.html#removeFrom">Operations#removeFrom</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="lib_operations.js.html">lib/operations.js</a>, <a href="lib_operations.js.html#line139">line 139</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#removeFrom-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="removeFrom-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const exists = manager.removeFrom('VALUE')// Will log true if it finds the resource or false otherwiseconsole.log(exists)</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#toJSON">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="toJSON">
+      <span class="type-signature"></span>.toJSON<span class="signature">()</span><span class="type-signature"> &rarr; {*}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Returns a object representation of the current instance</p>
+  </div>
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides">
+      <ul class="dummy">
+        <li>
+          <a href="Operations.html#toJSON">Operations#toJSON</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="lib_operations.js.html">lib/operations.js</a>, <a href="lib_operations.js.html#line167">line 167</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    
+
+    
+
+    
+  </article>
+</section>
+
+
+
+
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+  </footer>
+
+    
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+  <script src="scripts/scrollbar.js"></script>
+  <script src="scripts/collapsible.js"></script>
+  <script src="scripts/jquery.selectric.min.js"></script>
+  <script src="scripts/clipboard.min.js"></script>
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  
+  <script>
+      $(function () {
+          $('#menu-container').scrollbar();
+
+          
+      });
+    </script>
+</body>
+</html>

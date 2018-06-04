@@ -1,112 +1,176 @@
-import { recursify } from './../helper/util'
+import { recursify, ensureStringValue } from './../helper/util'
+import cloneDeep from 'lodash.clonedeep'
 
 /**
  * Operations
- *
- * @param {array} array The collection to manage
- * @param {string} stringKey The key to which find items by
- * @returns {{findIndex: Function, findWith: (function(Function)), findBy: Function, find: Function, has: Function, remove: Function}}
+ * @ignore
  */
-const operations = (array, stringKey = 'name') => {
-	const o = {}
+class Operations {
+	/**
+	 * The key which to identify an object in the array
+	 * @ignore
+	 */
+	key
 
 	/**
-	 * Find's an item's index in the list
+	 * The array containing the objects
+	 * @ignore
+	 */
+	array
+
+	/**
+	 * Creates a new Operations instance
 	 *
-	 * @param {string} identifier The item identifier value
-	 * @param {object[]} target The list to perform the search on, if not provided the default list will be used
+	 * @param {string} key The key which to identify each object in the array
+	 * @param {object[]} [array=] An array with objects to preload
+	 */
+	constructor(key, array) {
+		this.key = key
+		this.array = array || []
+	}
+	/**
+	 * Find's an object's index in the list using the default identifier
+	 *
+	 * @example
+	 * // Look for an object using a value
+	 * const index = manager.findIndex('VALUE')
+	 * // Will log the variable index inside the variables array
+	 * console.log(index)
+	 *
+	 * // Look for an object using an object with the key identifier
+	 * const index = manager.findIndex({name: 'VALUE'})
+	 * // Will log the variable index inside the variables array
+	 * console.log(index)
+	 *
+	 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+	 * @param {object[]} [array=] An alternative array to look for the index in. This is mostly used by the .remove in order to find the objects inside folders (or parents)
 	 * @returns {number} The found item index or -1
 	 */
-	o.findIndex = (identifier, target = null) =>
-		(target || array).findIndex(
-			value =>
-				value[stringKey] === ensureStringValue(identifier, stringKey)
+	findIndex(identifier, array) {
+		return (array || this.array).findIndex(
+			value => value[this.key] === ensureStringValue(identifier, this.key)
 		)
+	}
 
 	/**
-	 * Finds an item using a callback function
+	 * Finds an object using a callback function
+	 *
+	 * @example
+	 * const index = manager.findWith((resource) => resource.property === 'variable_value')
+	 *
+	 * // Will log the found variable object
+	 * console.log(variable)
 	 *
 	 * @param {function} callback The callback function to call for each item, this function should return true if you found the item and false otherwise
+	 * @returns {object} The found resource
 	 */
-	o.findWith = callback => array.find(callback)
+	findWith(callback) {
+		return this.array.find(callback)
+	}
 
 	/**
-	 * Find's an item by one of the item keys of your choice
+	 * Find's the first object by the object key of your choice
+	 *
+	 * @example
+	 * const resource = manager.findBy('property_name', false)
+	 *
+	 * // Will log the found object
+	 * console.log(resource)
 	 *
 	 * @param {string} by The key to look for in the item
 	 * @param {string} value The value of the key
 	 * @returns {object|null} The found object or null
 	 */
-	o.findBy = (by, value) => recursify(array, by, value)
+	findBy(by, value) {
+		return recursify(this.array, by, value)
+	}
 
 	/**
-	 * Finds an item by the name
+	 * Finds an object using the default identifier
 	 *
-	 * @params {string} identifier The search identifier (eg: name, id)
-	 * @returns {object} The found item object or null
-	 */
-	o.find = identifier =>
-		recursify(array, stringKey, ensureStringValue(identifier, stringKey))
-
-	/**
-	 * Checks if an item exists
+	 * @example
+	 * const resource = manager.find('VALUE')
 	 *
-	 * @param {string} identifier The item name
-	 * @returns {object} True if the item exists fails otherwise
+	 * // Will log the found object
+	 * console.log(resource)
+	 *
+	 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+	 * @returns {object|null} The found item object or null
 	 */
-	o.has = identifier =>
-		recursify(
-			array,
-			stringKey,
-			ensureStringValue(identifier, stringKey)
-		) !== null
+	find(identifier) {
+		return recursify(
+			this.array,
+			this.key,
+			ensureStringValue(identifier, this.key)
+		)
+	}
 
 	/**
-	 * Removes an item from an specific folder
+	 * Checks if an object exists
+	 *
+	 * @example
+	 * const exists = manager.has('VALUE')
+	 *
+	 * // Will log true if it finds the resource or false otherwise
+	 * console.log(exists)
+	 *
+	 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+	 * @returns {boolean} True if the item exists fails otherwise
+	 */
+	has(identifier) {
+		return (
+			recursify(
+				this.array,
+				this.key,
+				ensureStringValue(identifier, this.key)
+			) !== null
+		)
+	}
+
+	/**
+	 * Removes an object from an specific folder
+	 *
+	 * @example
+	 * const exists = manager.removeFrom('VALUE')
+	 *
+	 * // Will log true if it finds the resource or false otherwise
+	 * console.log(exists)
 	 *
 	 * @param {string} identifier The item identifier
-	 * @param {string|null} from The folder name
-	 * @returns {*}
+	 * @param {(string|null)} from The folder name
+	 * @returns {object}
 	 */
-	o.removeFrom = (identifier, from) => {
-		const found = o.find(from)
+	removeFrom(identifier, from) {
+		const found = this.find(from)
 		if (found && found.hasOwnProperty('item')) {
-			const index = o.findIndex(identifier, found.item)
+			const index = this.findIndex(identifier, found.item)
 			return index > -1 ? found.item.splice(index, 1) : []
 		}
 		return []
 	}
 
 	/**
-	 * Removes an item from the list
+	 * Removes an object from the list
 	 *
-	 * @param {string} identifier The item identifier
-	 * @param {string|null} parent The item identifier
+	 * @param {string|object} identifier The item identifier value or an object containing the identifier key
+	 * @param {string} [parent] The item parent identifier value
 	 */
-	o.remove = (identifier, parent = null) => {
+	remove(identifier, parent) {
 		if (parent) {
-			return o.removeFrom(
-				ensureStringValue(identifier, stringKey),
-				parent
-			)
+			return this.removeFrom(identifier, parent)
 		}
-		const found = o.findIndex(ensureStringValue(identifier, stringKey))
-		const results = found > -1 ? array.splice(found, 1) : null
-		return results
+		const found = this.findIndex(identifier)
+		return found > -1 ? this.array.splice(found, 1) : null
 	}
 
-	return o
+	/**
+	 * Returns a object representation of the current instance
+	 *
+	 * @returns {*} The array of objects
+	 */
+	toJSON() {
+		return cloneDeep(this.array)
+	}
 }
 
-/**
- * Ensure's the value is a string
- *
- * @param {object|string} object The object or string with the Key
- * @param {string} key If object, use this key to get the string value
- * @returns {string} The string value
- */
-const ensureStringValue = (object, key) =>
-	// @todo do a better object type check here
-	typeof object === 'object' ? object[key] : object
-
-export default operations
+export default Operations
