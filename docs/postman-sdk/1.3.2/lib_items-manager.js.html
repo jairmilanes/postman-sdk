@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Postman SDK - An easy way to integrate sharing documentation and more into your development environment - Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link id="google-font" href="https://fonts.googleapis.com/css?family=Roboto+Mono|Cutive+Mono|Roboto:300,400,700" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="styles/highlight-themes/current.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/collapsible.css">
+  <link type="text/css" rel="stylesheet" href="styles/style-switcher.css">
+  <link type="text/css" rel="stylesheet" href="styles/selectric.css">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <script src="https://embed.runkit.com"></script>
+  <style id="style-switcher-styles">
+    nav {
+        background: #282c34;
+    }
+    .hljs {
+        background: #1d2027;
+    }
+    .nav-container > ul > li.active a {
+        color: #dcdcdc;
+    }
+    .nav-container > ul > li.active a:hover {
+        color: #f78200;
+    }
+    .nav-container > ul > li.active ul {
+        border-color: #f78200;
+    }
+    h4.name {
+        color: #f78200;
+    }
+    .params > div > code, .params > div > em {
+        color: #f78200;
+    }
+    a, a:active {
+        color: #f78200;
+    }
+    .hljs-doctag, .hljs-keyword, .hljs-formula {
+        color: #f78200;
+    }
+    nav ul a:hover, nav ul a:active {
+        color: #f78200;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header-fixed">
+      <h1>
+        <a href="index.html" title="modernTemplate.title">
+            
+                <img alt="Postman SDK" src="https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png" />
+            
+            Postman SDK
+        </a>
+      </h1>
+      <div class="center-header">
+          <ul>
+            
+          </ul>
+      </div>
+      <div class="right-header">
+           
+                <a href="https://github.com" title="View it on Github" style="">
+                    <i class="fab fa-github-alt"></i>
+                </a>
+           
+                <a href="https://github.com" title="View it on NPM" style="font-size: 19px">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </a>
+           
+      </div>
+  </header>
+
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <nav>
+    <div id="menu-container" class="scrollbar-inner">
+        <div class="nav-container">
+            <h3>Classes</h3><ul><li id="Client-nav"><a href="Client.html">Client</a><ul class='methods'><li data-type="method" id="Client-delete-nav"><a href="Client.html#delete">delete</a></li><li data-type="method" id="Client-get-nav"><a href="Client.html#get">get</a></li><li data-type="method" id="Client-post-nav"><a href="Client.html#post">post</a></li><li data-type="method" id="Client-put-nav"><a href="Client.html#put">put</a></li></ul></li><li id="CollectionManager-nav"><a href="CollectionManager.html">CollectionManager</a><ul class='methods'><li data-type="method" id="CollectionManager-find-nav"><a href="CollectionManager.html#find">find</a></li><li data-type="method" id="CollectionManager-findBy-nav"><a href="CollectionManager.html#findBy">findBy</a></li><li data-type="method" id="CollectionManager-findIndex-nav"><a href="CollectionManager.html#findIndex">findIndex</a></li><li data-type="method" id="CollectionManager-findWith-nav"><a href="CollectionManager.html#findWith">findWith</a></li><li data-type="method" id="CollectionManager-has-nav"><a href="CollectionManager.html#has">has</a></li><li data-type="method" id="CollectionManager-remove-nav"><a href="CollectionManager.html#remove">remove</a></li><li data-type="method" id="CollectionManager-removeFrom-nav"><a href="CollectionManager.html#removeFrom">removeFrom</a></li><li data-type="method" id="CollectionManager-toJSON-nav"><a href="CollectionManager.html#toJSON">toJSON</a></li></ul></li><li id="EnvironmentManager-nav"><a href="EnvironmentManager.html">EnvironmentManager</a><ul class='methods'><li data-type="method" id="EnvironmentManager-add-nav"><a href="EnvironmentManager.html#add">add</a></li><li data-type="method" id="EnvironmentManager-find-nav"><a href="EnvironmentManager.html#find">find</a></li><li data-type="method" id="EnvironmentManager-findBy-nav"><a href="EnvironmentManager.html#findBy">findBy</a></li><li data-type="method" id="EnvironmentManager-findIndex-nav"><a href="EnvironmentManager.html#findIndex">findIndex</a></li><li data-type="method" id="EnvironmentManager-findWith-nav"><a href="EnvironmentManager.html#findWith">findWith</a></li><li data-type="method" id="EnvironmentManager-has-nav"><a href="EnvironmentManager.html#has">has</a></li><li data-type="method" id="EnvironmentManager-remove-nav"><a href="EnvironmentManager.html#remove">remove</a></li><li data-type="method" id="EnvironmentManager-removeFrom-nav"><a href="EnvironmentManager.html#removeFrom">removeFrom</a></li><li data-type="method" id="EnvironmentManager-toJSON-nav"><a href="EnvironmentManager.html#toJSON">toJSON</a></li></ul></li></ul><h3 id="global-nav"><a href="global.html">Global</a></h3>
+        </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        lib/items-manager.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>import url from 'url'
+import cloneDeep from 'lodash.clonedeep'
+import HeadersManager from './headers-manager'
+import Operations from './operations'
+import getUuidByString from 'uuid-by-string'
+import EventsManager from './events-manager'
+import queryString from 'query-string'
+import { isUrl } from '../helper/util'
+
+/**
+ * @typedef {object} ItemProperties
+ * @property {string} path The request path. Can be a full url, which will be parsed or just the pathname eg:/users
+ * @property {string} method The request method eg: POST, GET, PUT
+ * @property {string} [host=] The request host
+ * @property {string} [headers=[]] The request headers object
+ * @property {string} [protocol=http] The request protocol
+ * @property {string} [port=] The request port number eg: 3000
+ * @property {string} [query={}] The query object to append to the path
+ * @property {string} [body={}] The request body
+ * @property {string} [response={}] The response object
+ */
+
+/**
+ * @typedef {object} Item
+ * @property {string} id The request id
+ * @property {string} name The request item name
+ * @property {object} request The request object
+ * @property {string} request.method The request method (eg: POST, GET, PUT...)
+ * @property {object[]} request.headers The request headers array
+ * @property {object} request.body The request data to be sent to the server
+ * @property {object} request.url The url object
+ * @property {string} request.url.path The request path, it can be the pathname only, or the full url in which case you only need to also provide the method.
+ * @property {string} request.url.host The request host, if a full url was provided under the path property, this can be ignored
+ * @property {string} request.url.protocol The request protocol (http or https)
+ * @property {number} request.url.port The request port (eg: 3000)
+ * @property {number} request.url.query The query parameters to be sent in case of GET requests (eg: {uid: '[uid]'})
+ * @property {object[]} request.url.variables The request variables
+ * @property {object} response The request headers object
+ * @property {Event[]} event The request protocol
+ */
+
+/**
+ * Collection Item Class
+ *
+ * @extends Operations
+ * @viewmeta {"navigation": false}
+ */
+class ItemsManager extends Operations {
+	/**
+	 * Creates a new CollectionItemManager instance
+	 */
+	constructor() {
+		super('name')
+	}
+
+	/**
+	 * Adds a new item to the collection
+	 *
+	 * @param {string} name The item name
+	 * @param {ItemProperties} props The item properties
+	 * @returns {number} The number of items in the array
+	 */
+	add(name, props) {
+		return this.array.push(getItem(name, props))
+	}
+
+	/**
+	 * Adds a new item to a folder
+	 *
+	 * @param {string} folderName The new item name
+	 * @param {string} itemName The path in case of a request item
+	 * @param {object} [props] The properties Item object or null, in which case a folder will be created
+	 * @returns {number} The index of the new item
+	 */
+	addToFolder(folderName, itemName, props) {
+		const folder = this.find(folderName)
+
+		if (folder) {
+			return folder.item.push(
+				!props ? getFolder(itemName) : getItem(itemName, props)
+			)
+		}
+
+		throw new Error(`addToFolder: Item named "${name}" could not be found!`)
+	}
+
+	/**
+	 * Adds a new folder
+	 *
+	 * @param {string} name The name of the new folder
+	 * @param {string} [parent] The parent folder if any
+	 * @returns {number} The index of the new folder
+	 */
+	addFolder(name, parent) {
+		if (!parent) {
+			return this.array.push(getFolder(name))
+		}
+		return this.addToFolder(parent, name)
+	}
+
+	/**
+	 * Returns the object representation fo the instance
+	 *
+	 * @returns {object&lt;Item>} The request items array
+	 */
+	toJSON() {
+		const convert = array => {
+			return array.map(item => {
+				if (!item.request) {
+					item.item = convert(item.item)
+					return item
+				}
+
+				const clone = cloneDeep(item)
+
+				if (clone.event instanceof EventsManager) {
+					clone.event = clone.event.toJSON()
+				}
+
+				if (clone.request.headers instanceof HeadersManager) {
+					clone.request.headers = clone.request.headers.toJSON()
+				}
+
+				return clone
+			})
+		}
+
+		return convert(this.array)
+	}
+}
+
+/**
+ * Return a folder definition
+ *
+ * @param {string} name The name of the folder
+ * @returns {object} The folder
+ * @ignore
+ */
+const getFolder = name => ({
+	id: getUuidByString(name),
+	name: name,
+	item: []
+})
+
+/**
+ * Returns a Item object
+ *
+ * @param {string} name The item name. Used to generate it's it and in searches
+ * @param {object} props The method name
+ * @returns {Item} The item object
+ * @ignore
+ */
+const getItem = (name, props) => {
+	const {
+		path,
+		method,
+		headers,
+		protocol,
+		host,
+		port,
+		query,
+		body,
+		response
+	} =
+		props || {}
+
+	const item = {
+		name: name,
+		request: {
+			method: (method || 'get').toUpperCase(),
+			headers: new HeadersManager(headers),
+			body: body || {},
+			url: {}
+		},
+		response: response || {}
+	}
+
+	if (isUrl(path)) {
+		const urlObject = url.parse(path)
+		item.request.url = {
+			path: urlObject.pathname,
+			host: urlObject.host,
+			protocol: urlObject.protocol.replace(':', ''),
+			port: urlObject.port,
+			query: queryString.parse(urlObject.query || ''),
+			variables: []
+		}
+	} else {
+		item.request.url = {
+			path: path,
+			host: host,
+			protocol: protocol || 'http',
+			port: port,
+			query: query || {},
+			variables: []
+		}
+	}
+
+	item.id = getUuidByString(method + name)
+
+	item.event = new EventsManager()
+
+	return item
+}
+
+export default ItemsManager
+</code></pre>
+  </article>
+</section>
+
+    
+
+
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+  </footer>
+
+    
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+  <script src="scripts/scrollbar.js"></script>
+  <script src="scripts/collapsible.js"></script>
+  <script src="scripts/jquery.selectric.min.js"></script>
+  <script src="scripts/clipboard.min.js"></script>
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  
+  <script>
+      $(function () {
+          $('#menu-container').scrollbar();
+
+          
+      });
+    </script>
+</body>
+</html>

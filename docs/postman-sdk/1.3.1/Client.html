@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Postman SDK - An easy way to integrate sharing documentation and more into your development environment - Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link id="google-font" href="https://fonts.googleapis.com/css?family=Roboto+Mono|Cutive+Mono|Roboto:300,400,700" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="styles/highlight-themes/current.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/collapsible.css">
+  <link type="text/css" rel="stylesheet" href="styles/style-switcher.css">
+  <link type="text/css" rel="stylesheet" href="styles/selectric.css">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <script src="https://embed.runkit.com"></script>
+  <style id="style-switcher-styles">
+    nav {
+        background: #282c34;
+    }
+    .hljs {
+        background: #1d2027;
+    }
+    .nav-container > ul > li.active a {
+        color: #dcdcdc;
+    }
+    .nav-container > ul > li.active a:hover {
+        color: #f78200;
+    }
+    .nav-container > ul > li.active ul {
+        border-color: #f78200;
+    }
+    h4.name {
+        color: #f78200;
+    }
+    .params > div > code, .params > div > em {
+        color: #f78200;
+    }
+    a, a:active {
+        color: #f78200;
+    }
+    .hljs-doctag, .hljs-keyword, .hljs-formula {
+        color: #f78200;
+    }
+    nav ul a:hover, nav ul a:active {
+        color: #f78200;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header-fixed">
+      <h1>
+        <a href="index.html" title="modernTemplate.title">
+            
+                <img alt="Postman SDK" src="https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png" />
+            
+            Postman SDK
+        </a>
+      </h1>
+      <div class="center-header">
+          <ul>
+            
+          </ul>
+      </div>
+      <div class="right-header">
+           
+                <a href="https://github.com" title="View it on Github" style="">
+                    <i class="fab fa-github-alt"></i>
+                </a>
+           
+                <a href="https://github.com" title="View it on NPM" style="font-size: 19px">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </a>
+           
+      </div>
+  </header>
+
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <nav>
+    <div id="menu-container" class="scrollbar-inner">
+        <div class="nav-container">
+            <h3>Classes</h3><ul><li id="Client-nav"><a href="Client.html">Client</a><ul class='methods'><li data-type="method" id="Client-delete-nav"><a href="Client.html#delete">delete</a></li><li data-type="method" id="Client-get-nav"><a href="Client.html#get">get</a></li><li data-type="method" id="Client-post-nav"><a href="Client.html#post">post</a></li><li data-type="method" id="Client-put-nav"><a href="Client.html#put">put</a></li></ul></li><li id="CollectionManager-nav"><a href="CollectionManager.html">CollectionManager</a><ul class='methods'><li data-type="method" id="CollectionManager-find-nav"><a href="CollectionManager.html#find">find</a></li><li data-type="method" id="CollectionManager-findBy-nav"><a href="CollectionManager.html#findBy">findBy</a></li><li data-type="method" id="CollectionManager-findIndex-nav"><a href="CollectionManager.html#findIndex">findIndex</a></li><li data-type="method" id="CollectionManager-findWith-nav"><a href="CollectionManager.html#findWith">findWith</a></li><li data-type="method" id="CollectionManager-has-nav"><a href="CollectionManager.html#has">has</a></li><li data-type="method" id="CollectionManager-remove-nav"><a href="CollectionManager.html#remove">remove</a></li><li data-type="method" id="CollectionManager-removeFrom-nav"><a href="CollectionManager.html#removeFrom">removeFrom</a></li><li data-type="method" id="CollectionManager-toJSON-nav"><a href="CollectionManager.html#toJSON">toJSON</a></li></ul></li><li id="EnvironmentManager-nav"><a href="EnvironmentManager.html">EnvironmentManager</a><ul class='methods'><li data-type="method" id="EnvironmentManager-add-nav"><a href="EnvironmentManager.html#add">add</a></li><li data-type="method" id="EnvironmentManager-find-nav"><a href="EnvironmentManager.html#find">find</a></li><li data-type="method" id="EnvironmentManager-findBy-nav"><a href="EnvironmentManager.html#findBy">findBy</a></li><li data-type="method" id="EnvironmentManager-findIndex-nav"><a href="EnvironmentManager.html#findIndex">findIndex</a></li><li data-type="method" id="EnvironmentManager-findWith-nav"><a href="EnvironmentManager.html#findWith">findWith</a></li><li data-type="method" id="EnvironmentManager-has-nav"><a href="EnvironmentManager.html#has">has</a></li><li data-type="method" id="EnvironmentManager-remove-nav"><a href="EnvironmentManager.html#remove">remove</a></li><li data-type="method" id="EnvironmentManager-removeFrom-nav"><a href="EnvironmentManager.html#removeFrom">removeFrom</a></li><li data-type="method" id="EnvironmentManager-toJSON-nav"><a href="EnvironmentManager.html#toJSON">toJSON</a></li></ul></li></ul><h3 id="global-nav"><a href="global.html">Global</a></h3>
+        </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        Client
+      </h1>
+    
+
+    
+
+<section id="section-container">
+  <article>
+    <div class="container-overview">
+      
+        
+           <div class="class-description description">
+             <p>A promise based REST api client to interact with Postman Cloud servers to create and update your collections, environments, mocks &amp; monitors.
+<br><br>
+<strong>For detailed response &amp; payload formats visit the</strong> <a href="https://docs.api.getpostman.com">official REST api documentation page</a>:</p>
+           </div>
+        
+
+        
+
+
+  
+    <h2>Constructor</h2>
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#Client">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="Client">
+      <span class="type-signature"></span>new Client<span class="signature">(target, apiKey=<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Create a new Api Instance</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>target</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>One of [collections, environments, mocks, monitors, user]</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>apiKey=</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+                &lt;optional><br>
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>The Postman Cloud api key</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="client.js.html">client.js</a>, <a href="client.js.html#line45">line 45</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#Client-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="Client-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>// Create a client instanceconst client = new Client('collections', '[YOUR_API_KEY]') // use if of [collections, environments, mocks, monitors, user]//  Lets use a collection as an example hereconst collection = new CollectionManager('My Collection', '1.0.0')// Add a couple of items to the collectioncollection.add('endpoint-one', {     path: 'http://myhost.com/endpoint-one',     method: 'get'})collection.add('endpoint-two', {     path: 'http://myhost.com/endpoint-two',     method: 'post'})const collectionId;// Post your collections to the Postman serversclient.post(collection.toJSON())     .then(response => collectionId = response.collection.id)     .catch(error => console.error(error))// You can later retrieve your created collections if neededclient.get(collectionId).then(collections => console.log(collections))collection.add('endpoint-three', {     path: 'http://myhost.com/endpoint-three',     method: 'get'})// You can also update them if neededclient.put(collectionId, collection.toJSON())     .then(response => console.log(response))</code></pre>
+
+
+  </div>
+
+
+      
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+      <h3 class="subsection-title">Methods</h3>
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#delete">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="delete">
+      <span class="type-signature"></span>.delete<span class="signature">(id)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Deletes a resource from the server</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>id</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    |
+
+    <span class="param-type">
+      number
+    </span>
+
+    
+)</em>
+          
+
+          
+
+          <p>The resource id</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="client.js.html">client.js</a>, <a href="client.js.html#line156">line 156</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#delete-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="delete-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>// Get a single resource from the serverClient.delete([id]).then( results => {    console.log(results)})// or using async/await you could doconst results = await Client.delete()console.log(results)</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#get">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="get">
+      <span class="type-signature"></span>.get<span class="signature">(id<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Get a resource from the server</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>id</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    |
+
+    <span class="param-type">
+      number
+    </span>
+
+    |
+
+    <span class="param-type">
+      object
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+                &lt;optional><br>
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>The id or the get params</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="client.js.html">client.js</a>, <a href="client.js.html#line95">line 95</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#get-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="get-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>// Get a single resource from the serverClient.get([resource-id]).then( results => {    console.log(results)})// Get a all resources from the serverClient.get().then( results => {    console.log(results)})</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#post">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="post">
+      <span class="type-signature"></span>.post<span class="signature">(props)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Post a new resource to the server</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>props</code>
+               <em>(
+    <span class="param-type">
+      object
+    </span>
+
+    
+)</em>
+          
+
+          
+
+          <p>The post properties</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="client.js.html">client.js</a>, <a href="client.js.html#line115">line 115</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#post-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="post-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>// Get a single resource from the serverClient.post([props]).then( results => {    console.log(results)})// or using async/await you could doconst results = await Client.post([props])console.log(results)</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#put">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="put">
+      <span class="type-signature"></span>.put<span class="signature">(id, props<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Updates a resource in the server</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<div class="params">
+     
+      <div>
+          
+               <code>id</code>
+               <em>(
+    <span class="param-type">
+      string
+    </span>
+
+    |
+
+    <span class="param-type">
+      number
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>The resource id</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>props</code>
+               <em>(
+    <span class="param-type">
+      object
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+                &lt;optional><br>
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>The resource properties to update</p>
+
+          
+
+      </div>
+      
+</div>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="client.js.html">client.js</a>, <a href="client.js.html#line136">line 136</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#put-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="put-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>// Get a single resource from the serverClient.put([id], [props]).then( results => {    console.log(results)})// or using async/await you could doconst results = await Client.put([id], [props])console.log(results)</code></pre>
+
+
+  </div>
+
+
+      
+    
+
+    
+
+    
+  </article>
+</section>
+
+
+
+
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+  </footer>
+
+    
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+  <script src="scripts/scrollbar.js"></script>
+  <script src="scripts/collapsible.js"></script>
+  <script src="scripts/jquery.selectric.min.js"></script>
+  <script src="scripts/clipboard.min.js"></script>
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  
+  <script>
+      $(function () {
+          $('#menu-container').scrollbar();
+
+          
+      });
+    </script>
+</body>
+</html>
