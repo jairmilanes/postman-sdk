@@ -1,4 +1,4 @@
-# ![Postman Unofficial SDK - By Jair Milanes](https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png "Postman SDK")
+# ![Postman Unofficial SDK - By Jair Milanes](https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png 'Postman SDK')
 
 An unoficial Postman SDK to create and manage collections & environments localy and in the cloud.
 
@@ -14,7 +14,7 @@ But that is not all, a Collection can also be used to export full featured docum
 
 Sooo I created this SDK to help me automate the generation of collections and it's proper documentation page in a Express server middleware, witch you can find here (link available soon).
 
-If you find it useful it's your's to use! Cheers!  
+If you find it useful it's your's to use! Cheers!
 
 # [How to use it](#how-to-use-it)
 
@@ -33,7 +33,6 @@ POSTMAN_API_KEY=[YOUR KEY HERE]
 The api key can also be passed to the Client constructor as you will see below, but setting it as an environment variable is highly recommended.
 
 Now for each helper class:
-
 
 ## EnvironmentManager
 
@@ -68,9 +67,10 @@ staging.add('PROTOCOL', 'http', 'string', true)
 envrionments.concat([dev, staging])
 ```
 
-
 ## CollectionManager
+
 The CollectionManager creates a new collection and allows you to manage it's items & events by providing stray forward methods to add, find & remove entries.
+
 ```javascript
 const collection = new CollectionManager('my-collection', '1.0.0')
 collection.item.add('test-endpoint', {
@@ -89,12 +89,13 @@ collection.item.addToFolder('First Folder', 'test-endpoint-2', {
 })
 ```
 
-
 ## Client
+
 The Client is a simple Promise based client to communicate with the Postman REST api and get/save/update/delete your collections, environments, mocks, monitors & the user profile in the cloud, from there you can share and or publish your api documentation.
+
 ```javascript
 // Provide the api key only if you have no set it as a env variable
-const environmentClient = new Client('environments', '[API_KEY]') 
+const environmentClient = new Client('environments', '[API_KEY]')
 // We can post each environment we created ealier:
 envrionments.forEach(env => {
     client.post(env.toJSON())
@@ -107,17 +108,16 @@ const collectionClient = new Client('collections', '[APY_KEY]')
 collectionClient.post(collection.toJSON())
 .then(response => console.log(response))
 .match(error => console.log(error))
-
-```     
-
+```
 
 # [Advanced Usage](#advanced-usage)
+
 There is more you can do with the CollectionManager if you want to enhance your collections and documentation even more:
 Use helper methods to programaticaly generate, update or remove collection items:
 
 ### Easily find & remove items
-```
 
+```
 // You can find items inside collections
 const item = collection.item.find('test-endpoint-2')
 console.log(item)
@@ -132,12 +132,11 @@ console.log(exists)
 
 // Find an item with a custom function
 const item =
-
 ```
 
 ### Add custom headers
-```
 
+```
 const item = collection.find('test-endpoint-2')
 item.request.headers.add('Content-type', 'application/json')
 
@@ -146,13 +145,13 @@ item.request.headers.find('Content-type')
 item.request.headers.has('Content-type')
 item.request.headers.findIndex('Content-type')
 item.request.headers.remove('Content-type')
-
 ```
 
 ### Add events
-Events can be added to the collection level or the item level. This means that if you add it at the collection level or the item level. If added to the collection, any request item on that collection can trigger, otherwise only the item you add to it will trigger.
-```
 
+Events can be added to the collection level or the item level. This means that if you add it at the collection level or the item level. If added to the collection, any request item on that collection can trigger, otherwise only the item you add to it will trigger.
+
+```
 collection.event.add({
 name: 'My Script',
 listen: 'prerequest', // This is the default value and could be omitted
@@ -176,28 +175,32 @@ item.event.find('Content-type')
 item.event.has('Content-type')
 item.event.findIndex('Content-type')
 item.event.remove('Content-type')
-
-````
+```
 
 ## [Full Documentation](#full-docs)
+
 You can also find a more detailed documentation with each method and class available here:
-[Postman SDK Documentaion Page](https://layoutzweb.github.io/postman-sdk/postman-sdk/1.3.0/Client.html)
+[Postman SDK Documentaion Page](https://layoutzweb.github.io/postman-sdk/postman-sdk/1.3.2/Client.html)
 
 ## [Official Api Docs](#official-docs)
+
 Used as reference for the development of this SDK.
 [Official Api Docs](https://docs.api.getpostman.com)
 
-# [Tests](#tests)  
-Assuming you have cloned this repo and have dependencies installed by running ```npm install```, run:  
-```javascript  
+# [Tests](#tests)
+
+Assuming you have cloned this repo and have dependencies installed by running `npm install`, run:
+
+```javascript
 npm run jest  
-````
+```
 
 # [Contributions](#Collaboration)
 
-If you like the SDK and found bug's, or have suggestions on how we could improve it please submit your pull requests. I will consider all suggestions. One rule, make sure you have tests included! Cheers!  
+If you like the SDK and found bug's, or have suggestions on how we could improve it please submit your pull requests. I will consider all suggestions. One rule, make sure you have tests included! Cheers!
 
 # [License](#license)
+
 ```
 MIT License  
 
