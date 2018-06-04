@@ -3,7 +3,6 @@
 An unoficial Postman SDK to create and manage collections & environments localy and in the cloud.
 
 ![Travis](https://img.shields.io/travis/layoutzweb/postman-sdk.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/73cc03084b25454ebaa1cd2b8f101669)](https://www.codacy.com/app/layoutzweb/postman-sdk?utm_source=github.com&utm_medium=referral&utm_content=layoutzweb/postman-sdk&utm_campaign=Badge_Grade) [![npm](https://img.shields.io/npm/v/postman-sdk.svg)](https://github.com/layoutzweb/postman-sdk) [![license](https://img.shields.io/github/license/layoutzweb/postman-sdk.svg)](https://github.com/layoutzweb/postman-sdk)
-<br><br>
 
 # [Why a Postman SDK?](#why-postman)
 
@@ -16,7 +15,6 @@ But that is not all, a Collection can also be used to export full featured docum
 Sooo I created this SDK to help me automate the generation of collections and it's proper documentation page in a Express server middleware, witch you can find here (link available soon).
 
 If you find it useful it's your's to use! Cheers!  
-<br><br>
 
 # [How to use it](#how-to-use-it)
 
@@ -33,9 +31,9 @@ POSTMAN_API_KEY=[YOUR KEY HERE]
 ```
 
 The api key can also be passed to the Client constructor as you will see below, but setting it as an environment variable is highly recommended.
-<br>
+
 Now for each helper class:
-<br>
+
 
 ## EnvironmentManager
 
@@ -70,7 +68,7 @@ staging.add('PROTOCOL', 'http', 'string', true)
 envrionments.concat([dev, staging])
 ```
 
-<br>
+
 ## CollectionManager
 The CollectionManager creates a new collection and allows you to manage it's items & events by providing stray forward methods to add, find & remove entries.
 ```javascript
@@ -90,7 +88,8 @@ collection.item.addToFolder('First Folder', 'test-endpoint-2', {
 	host: 'localhost'
 })
 ```
-<br>
+
+
 ## Client
 The Client is a simple Promise based client to communicate with the Postman REST api and get/save/update/delete your collections, environments, mocks, monitors & the user profile in the cloud, from there you can share and or publish your api documentation.
 ```javascript
@@ -109,12 +108,13 @@ collectionClient.post(collection.toJSON())
 .then(response => console.log(response))
 .match(error => console.log(error))
 
-```
-<br><br>
+```     
+
+
 # [Advanced Usage](#advanced-usage)
 There is more you can do with the CollectionManager if you want to enhance your collections and documentation even more:
 Use helper methods to programaticaly generate, update or remove collection items:
-<br>
+
 ### Easily find & remove items
 ```
 
@@ -134,7 +134,7 @@ console.log(exists)
 const item =
 
 ```
-<br>
+
 ### Add custom headers
 ```
 
@@ -148,7 +148,7 @@ item.request.headers.findIndex('Content-type')
 item.request.headers.remove('Content-type')
 
 ```
-<br>
+
 ### Add events
 Events can be added to the collection level or the item level. This means that if you add it at the collection level or the item level. If added to the collection, any request item on that collection can trigger, otherwise only the item you add to it will trigger.
 ```
@@ -178,19 +178,19 @@ item.event.findIndex('Content-type')
 item.event.remove('Content-type')
 
 ````
-<br><br>
+
 # [Tests](#tests)  
 Assuming you have cloned this repo and have dependencies installed by running ```npm install```, run:  
 ```javascript  
 npm run jest  
 ````
 
-<br><br>
+
 
 # [Contributions](#Collaboration)
 
 If you like the SDK and found bug's, or have suggestions on how we could improve it please submit your pull requests. I will consider all suggestions. One rule, make sure you have tests included! Cheers!  
-<br><br>
+
 
 # [License](#license)
 
@@ -216,8 +216,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.  
 
 ```
-
-<br><br>
 
 # Official Api Docs
 
