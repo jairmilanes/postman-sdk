@@ -1,4 +1,4 @@
-# <img width="50" src="https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png"/> Postman SDK
+# ![Postman Unofficial SDK - By Jair Milanes](https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png "Postman SDK")
 
 An unoficial Postman SDK to create and manage collections & environments localy and in the cloud.
 
@@ -179,21 +179,25 @@ item.event.remove('Content-type')
 
 ````
 
+## [Full Documentation](#full-docs)
+You can also find a more detailed documentation with each method and class available here:
+[Postman SDK Documentaion Page](https://layoutzweb.github.io/postman-sdk/postman-sdk/1.3.0/Client.html)
+
+## [Official Api Docs](#official-docs)
+Used as reference for the development of this SDK.
+[Official Api Docs](https://docs.api.getpostman.com)
+
 # [Tests](#tests)  
 Assuming you have cloned this repo and have dependencies installed by running ```npm install```, run:  
 ```javascript  
 npm run jest  
 ````
 
-
-
 # [Contributions](#Collaboration)
 
 If you like the SDK and found bug's, or have suggestions on how we could improve it please submit your pull requests. I will consider all suggestions. One rule, make sure you have tests included! Cheers!  
 
-
 # [License](#license)
-
 ```
 MIT License  
 
@@ -214,9 +218,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
 SOFTWARE.  
-
 ```
-
-# Official Api Docs
-
-[Official Api Docs](https://docs.api.getpostman.com)
