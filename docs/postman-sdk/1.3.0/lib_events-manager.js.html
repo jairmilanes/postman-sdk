@@ -156,58 +156,58 @@ import getUuidByString from 'uuid-by-string/index'
  * @viewmeta {"navigation": false}
  */
 class EventsManager extends Operations {
-
-    /**
-     * Creates a new EventsManager instance
-     */
+	/**
+	 * Creates a new EventsManager instance
+	 */
 	constructor() {
 		super('id')
 	}
 
-    /**
-     * Adds a new event to the current collection
-     *
-     * @param {EventProperties} params The event properties
-     * @returns {number} The number of items in the array
-     */
+	/**
+	 * Adds a new event to the current collection
+	 *
+	 * @param {EventProperties} params The event properties
+	 * @returns {number} The number of items in the array
+	 */
 	add(params) {
-        const { name, listen, disabled, type, exec, source } = params
+		const { name, listen, disabled, type, exec, source } = params
 
-        const event = {
-            id: getUuidByString(name),
-            listen: listen || 'prerequest',
-            disabled: disabled || false,
-            script: {
-                id: getUuidByString(name),
-                type: type || 'text/javascript',
-                name: name
-            }
-        }
+		const event = {
+			id: getUuidByString(name),
+			listen: listen || 'prerequest',
+			disabled: disabled || false,
+			script: {
+				id: getUuidByString(name),
+				type: type || 'text/javascript',
+				name: name
+			}
+		}
 
-        if (!exec &amp;&amp; !source) {
-            throw new Error('Cannot create an event without a script to run')
-        }
+		if (!exec &amp;&amp; !source) {
+			throw new Error('Cannot create an event without a script to run')
+		}
 
-        if (exec) {
-            event.script.exec = exec
-        }
+		if (exec) {
+			event.script.exec = exec
+		}
 
-        if (source) {
-            event.script.source = source
-        }
+		if (source) {
+			event.script.source = source
+		}
 
-        return this.array.push(event)
+		return this.array.push(event)
 	}
 
-    /**
-     * @returns {object&lt;Event>} Returns the array of Events
-     */
+	/**
+	 * @returns {object&lt;Event>} Returns the array of Events
+	 */
 	toJSON() {
-	    return super.toJSON()
-    }
+		return super.toJSON()
+	}
 }
 
-export default EventsManager</code></pre>
+export default EventsManager
+</code></pre>
   </article>
 </section>
 

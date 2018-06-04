@@ -197,69 +197,68 @@ import EventsManager from './lib/events-manager'
  * @extends Operations
  */
 class CollectionManager {
-
-    /**
+	/**
 	 * The collection info like name and version
 	 * @type {CollectionInfo}
 	 * @private
-     */
-	info;
+	 */
+	info
 
-    /**
+	/**
 	 * The collection items manager.
 	 * Use this member to add, find &amp; remove request items from your collection
 	 * @type {ItemsManager}
-     */
-	item;
+	 */
+	item
 
-    /**
-     * The collection items manager.
+	/**
+	 * The collection items manager.
 	 * Use this member to add, find &amp; remove events/scripts to your collection
-     * @type {EventsManager}
-     */
-	event;
+	 * @type {EventsManager}
+	 */
+	event
 
-    /**
+	/**
 	 * The variables array.
 	 * Use this member to add, find &amp; remove variables from your collection
 	 * @type {object[]}
-     */
-	variable;
+	 */
+	variable
 
-    /**
+	/**
 	 * Creates a new CollectionManager instance
 	 *
-     * @param {string} name The collection name
-     * @param {string} [version] The current version number
-     */
+	 * @param {string} name The collection name
+	 * @param {string} [version] The current version number
+	 */
 	constructor(name, version) {
 		this.info = {
-            version: version || '0.0.0',
-            name: name,
-            schema:
-                'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
-        }
-        this.item = new ItemsManager()
+			version: version || '0.0.0',
+			name: name,
+			schema:
+				'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
+		}
+		this.item = new ItemsManager()
 		this.event = new EventsManager()
-        this.variable = []
+		this.variable = []
 	}
 
-    /**
-     * Returns an json representation of the Collection object
-     *
-     * @returns {Collection}
-     * @override
-     */
-    toJSON() {
-        return {
-            collection: {
-                info: this.info,
-                item: this.item.toJSON(),
-                event: this.event.toJSON(),
-                variable: this.variable
-            }
-        }
-    }
+	/**
+	 * Returns an json representation of the Collection object
+	 *
+	 * @returns {Collection}
+	 * @override
+	 */
+	toJSON() {
+		return {
+			collection: {
+				info: this.info,
+				item: this.item.toJSON(),
+				event: this.event.toJSON(),
+				variable: this.variable
+			}
+		}
+	}
 }
 
 export default CollectionManager

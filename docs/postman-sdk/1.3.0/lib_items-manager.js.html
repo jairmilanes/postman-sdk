@@ -129,7 +129,7 @@ import Operations from './operations'
 import getUuidByString from 'uuid-by-string'
 import EventsManager from './events-manager'
 import queryString from 'query-string'
-import {isUrl} from '../helper/util'
+import { isUrl } from '../helper/util'
 
 /**
  * @typedef {object} ItemProperties
@@ -170,34 +170,33 @@ import {isUrl} from '../helper/util'
  * @viewmeta {"navigation": false}
  */
 class ItemsManager extends Operations {
-
-    /**
+	/**
 	 * Creates a new CollectionItemManager instance
-     */
+	 */
 	constructor() {
 		super('name')
 	}
 
-    /**
-     * Adds a new item to the collection
+	/**
+	 * Adds a new item to the collection
 	 *
-     * @param {string} name The item name
+	 * @param {string} name The item name
 	 * @param {ItemProperties} props The item properties
-     * @returns {number} The number of items in the array
-     */
-    add(name, props) {
-    	return this.array.push(getItem(name, props))
+	 * @returns {number} The number of items in the array
+	 */
+	add(name, props) {
+		return this.array.push(getItem(name, props))
 	}
 
-    /**
-     * Adds a new item to a folder
-     *
-     * @param {string} folderName The new item name
-     * @param {string} itemName The path in case of a request item
-     * @param {object} [props] The properties Item object or null, in which case a folder will be created
-     * @returns {number} The index of the new item
-     */
-    addToFolder(folderName, itemName, props) {
+	/**
+	 * Adds a new item to a folder
+	 *
+	 * @param {string} folderName The new item name
+	 * @param {string} itemName The path in case of a request item
+	 * @param {object} [props] The properties Item object or null, in which case a folder will be created
+	 * @returns {number} The index of the new item
+	 */
+	addToFolder(folderName, itemName, props) {
 		const folder = this.find(folderName)
 
 		if (folder) {
@@ -207,52 +206,51 @@ class ItemsManager extends Operations {
 		}
 
 		throw new Error(`addToFolder: Item named "${name}" could not be found!`)
-    }
+	}
 
-    /**
-     * Adds a new folder
-     *
-     * @param {string} name The name of the new folder
-     * @param {string} [parent] The parent folder if any
-     * @returns {number} The index of the new folder
-     */
-    addFolder(name, parent) {
+	/**
+	 * Adds a new folder
+	 *
+	 * @param {string} name The name of the new folder
+	 * @param {string} [parent] The parent folder if any
+	 * @returns {number} The index of the new folder
+	 */
+	addFolder(name, parent) {
 		if (!parent) {
 			return this.array.push(getFolder(name))
 		}
 		return this.addToFolder(parent, name)
 	}
 
-    /**
+	/**
 	 * Returns the object representation fo the instance
 	 *
 	 * @returns {object&lt;Item>} The request items array
-     */
-    toJSON() {
-    	const convert = (array) => {
-            return array.map(item => {
-
-            	if (!item.request) {
-                    item.item = convert(item.item)
-            		return item
+	 */
+	toJSON() {
+		const convert = array => {
+			return array.map(item => {
+				if (!item.request) {
+					item.item = convert(item.item)
+					return item
 				}
 
-                const clone = cloneDeep(item)
+				const clone = cloneDeep(item)
 
 				if (clone.event instanceof EventsManager) {
-                    clone.event = clone.event.toJSON()
+					clone.event = clone.event.toJSON()
 				}
 
-                if (clone.request.headers instanceof HeadersManager) {
-                    clone.request.headers = clone.request.headers.toJSON()
-                }
+				if (clone.request.headers instanceof HeadersManager) {
+					clone.request.headers = clone.request.headers.toJSON()
+				}
 
-                return clone
+				return clone
 			})
 		}
 
-        return convert(this.array);
-    }
+		return convert(this.array)
+	}
 }
 
 /**
@@ -263,12 +261,10 @@ class ItemsManager extends Operations {
  * @ignore
  */
 const getFolder = name => ({
-    id: getUuidByString(name),
-    name: name,
-    item: []
+	id: getUuidByString(name),
+	name: name,
+	item: []
 })
-
-
 
 /**
  * Returns a Item object
@@ -326,7 +322,7 @@ const getItem = (name, props) => {
 
 	item.id = getUuidByString(method + name)
 
-    item.event = new EventsManager()
+	item.event = new EventsManager()
 
 	return item
 }

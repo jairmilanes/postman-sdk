@@ -123,20 +123,17 @@
 
   <section class="readme">
     <article>
-      <h1><img width="50" src="https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png"/> Postman SDK</h1><p>An unoficial Postman SDK to create and manage collections &amp; environments localy and in the cloud.  </p>
-<p><img src="https://img.shields.io/travis/layoutzweb/postman-sdk.svg" alt="Travis"> <a href="https://www.codacy.com/app/layoutzweb/postman-sdk?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=layoutzweb/postman-sdk&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/73cc03084b25454ebaa1cd2b8f101669" alt="Codacy Badge"></a> <a href="https://github.com/layoutzweb/postman-sdk"><img src="https://img.shields.io/npm/v/postman-sdk.svg" alt="npm"></a> <a href="https://github.com/layoutzweb/postman-sdk"><img src="https://img.shields.io/github/license/layoutzweb/postman-sdk.svg" alt="license"></a>
-<br><br></p>
-<h1><a href="#why-postman">Why a Postman SDK?</a></h1><p>Postman is well known for providing a great tool to perform request's against any api server, but if you look deeper there are other nice features to it, that maybe you are overlooking.  </p>
-<p>One of them is a Collection. A Collection holds groups of pre-configured requests, that you can access and use it with just a couple of clicks and the best part of this feature is that collections can be shared!  </p>
-<p>But that is not all, a Collection can also be used to export full featured documentation pages for your api's, that users can visit and interact with by checking request properties, parameter descriptions &amp; response examples.  </p>
-<p>Sooo I created this SDK to help me automate the generation of collections and it's proper documentation page in a Express server middleware, witch you can find here (link available soon).  </p>
-<p>If you find it useful it's your's to use! Cheers!<br><br><br></p>
+      <h1><img src="https://github.com/layoutzweb/postman-sdk/raw/master/media/postman-logo.png" alt="Postman Unofficial SDK - By Jair Milanes" title="Postman SDK"></h1><p>An unoficial Postman SDK to create and manage collections &amp; environments localy and in the cloud.</p>
+<p><img src="https://img.shields.io/travis/layoutzweb/postman-sdk.svg" alt="Travis"> <a href="https://www.codacy.com/app/layoutzweb/postman-sdk?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=layoutzweb/postman-sdk&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/73cc03084b25454ebaa1cd2b8f101669" alt="Codacy Badge"></a> <a href="https://github.com/layoutzweb/postman-sdk"><img src="https://img.shields.io/npm/v/postman-sdk.svg" alt="npm"></a> <a href="https://github.com/layoutzweb/postman-sdk"><img src="https://img.shields.io/github/license/layoutzweb/postman-sdk.svg" alt="license"></a></p>
+<h1><a href="#why-postman">Why a Postman SDK?</a></h1><p>Postman is well known for providing a great tool to perform request's against any api server, but if you look deeper there are other nice features to it, that maybe you are overlooking.</p>
+<p>One of them is a Collection. A Collection holds groups of pre-configured requests, that you can access and use it with just a couple of clicks and the best part of this feature is that collections can be shared!</p>
+<p>But that is not all, a Collection can also be used to export full featured documentation pages for your api's, that users can visit and interact with by checking request properties, parameter descriptions &amp; response examples.</p>
+<p>Sooo I created this SDK to help me automate the generation of collections and it's proper documentation page in a Express server middleware, witch you can find here (link available soon).</p>
+<p>If you find it useful it's your's to use! Cheers!  </p>
 <h1><a href="#how-to-use-it">How to use it</a></h1><p>The Postman Sdk provides 3 main classes to help you create and manage your collections, EnvironmentManager, CollectionsManager and the Client, but first things first, if you plan on using the client to interact with the Postman Api, start by installing the package:</p>
-<pre class="prettyprint source"><code>npm install postman-sdk --save</code></pre><p>Next, have a environment variable set with your Postman Api Key:  </p>
-<pre class="prettyprint source lang-apacheconfig"><code>POSTMAN_API_KEY=[YOUR KEY HERE]  </code></pre><p>The api key can also be passed to the Client constructor as you will see below, but setting it as an environment variable is highly recommended. 
-<br>
-Now for each helper class:
-<br></p>
+<pre class="prettyprint source"><code>npm install postman-sdk --save</code></pre><p>Next, have a environment variable set with your Postman Api Key:</p>
+<pre class="prettyprint source lang-apacheconfig"><code>POSTMAN_API_KEY=[YOUR KEY HERE]  </code></pre><p>The api key can also be passed to the Client constructor as you will see below, but setting it as an environment variable is highly recommended.</p>
+<p>Now for each helper class:</p>
 <h2>EnvironmentManager</h2><p>The EnvironmentManager creates a new Environment and allows you to manage it's variables just like managing collections items and events.
 <br><br></p>
 <pre class="prettyprint source lang-javascript"><code>const envrionments = []
@@ -149,10 +146,10 @@ dev.add({
     enabled: true
 })
 // Passing properties as arguments also works
-dev.add('PROTOCOL', 'http', 'string', true) 
+dev.add('PROTOCOL', 'http', 'string', true)
 
 // You can give any name
-const staging = new EnvironmentManager('staging') 
+const staging = new EnvironmentManager('staging')
 staging.add({
     key: 'HOST',
     value: 'staging.myhost.com',
@@ -160,11 +157,10 @@ staging.add({
     enabled: true
 })
 // Passing properties as arguments also works
-staging.add('PROTOCOL', 'http', 'string', true) 
+staging.add('PROTOCOL', 'http', 'string', true)
 
 // Lets added here for now so we can use in the examples bellow
-envrionments.concat([dev, staging])</code></pre><p><br></p>
-<h2>CollectionManager</h2><p>The CollectionManager creates a new collection and allows you to manage it's items &amp; events by providing stray forward methods to add, find &amp; remove entries.</p>
+envrionments.concat([dev, staging])</code></pre><h2>CollectionManager</h2><p>The CollectionManager creates a new collection and allows you to manage it's items &amp; events by providing stray forward methods to add, find &amp; remove entries.</p>
 <pre class="prettyprint source lang-javascript"><code>const collection = new CollectionManager('my-collection', '1.0.0')
 collection.item.add('test-endpoint', {
     path: '/test-endpoint',
@@ -179,8 +175,7 @@ collection.item.addToFolder('First Folder', 'test-endpoint-2', {
     method: 'DELETE',
     protocol: 'http',
     host: 'localhost'
-})</code></pre><p><br></p>
-<h2>Client</h2><p>The Client is a simple Promise based client to communicate with the Postman REST api and get/save/update/delete your collections, environments, mocks, monitors &amp; the user profile in the cloud, from there you can share and or publish your api documentation.</p>
+})</code></pre><h2>Client</h2><p>The Client is a simple Promise based client to communicate with the Postman REST api and get/save/update/delete your collections, environments, mocks, monitors &amp; the user profile in the cloud, from there you can share and or publish your api documentation.</p>
 <pre class="prettyprint source lang-javascript"><code>// Provide the api key only if you have no set it as a env variable
 const environmentClient = new Client('environments', '[API_KEY]') 
 // We can post each environment we created ealier:
@@ -193,12 +188,12 @@ envrionments.forEach(env => {
 const collectionClient = new Client('collections', '[APY_KEY]')
 // Like the environment, we can post or collection we created in the example above:
 collectionClient.post(collection.toJSON())
-    .then(response => console.log(response))
-    .match(error => console.log(error))</code></pre><p><br><br></p>
-<h1><a href="#advanced-usage">Advanced Usage</a></h1><p>There is more you can do with the CollectionManager if you want to enhance your collections and documentation even more:
-Use helper methods to programaticaly generate, update or remove collection items:
-<br></p>
-<h3>Easily find &amp; remove items</h3><pre class="prettyprint source"><code>// You can find items inside collections
+.then(response => console.log(response))
+.match(error => console.log(error))
+</code></pre><h1><a href="#advanced-usage">Advanced Usage</a></h1><p>There is more you can do with the CollectionManager if you want to enhance your collections and documentation even more:
+Use helper methods to programaticaly generate, update or remove collection items:</p>
+<h3>Easily find &amp; remove items</h3><pre class="prettyprint source"><code>
+// You can find items inside collections
 const item = collection.item.find('test-endpoint-2')
 console.log(item)
 
@@ -211,42 +206,49 @@ const exists = collection.item.has('test-endpoint')
 console.log(exists)
 
 // Find an item with a custom function
-const item = </code></pre><p><br></p>
-<h3>Add custom headers</h3><pre class="prettyprint source"><code>const item = collection.find('test-endpoint-2')
+const item =
+</code></pre><h3>Add custom headers</h3><pre class="prettyprint source"><code>
+const item = collection.find('test-endpoint-2')
 item.request.headers.add('Content-type', 'application/json')
 
 // You can also use any methods available for the item it self
 item.request.headers.find('Content-type')
 item.request.headers.has('Content-type')
 item.request.headers.findIndex('Content-type')
-item.request.headers.remove('Content-type')</code></pre><p><br></p>
-<h3>Add events</h3><p>Events can be added to the collection level or the item level. This means that if you add it at the collection level or the item level. If added to the collection, any request item on that collection can trigger, otherwise only the item you add to it will trigger. </p>
-<pre class="prettyprint source"><code>collection.event.add({
-    name: 'My Script',
-    listen: 'prerequest', // This is the default value and could be omitted
-    disabled: false,
-    type: 'text/javascript', // Also the default value and could be omitted
-    exec: ['console.log('MY LOG!')', 'ANY JAVASCRIPT SCRIPT'], // Provide either the exec or source property, never both, only added here for demonstration, see below for source example.
+item.request.headers.remove('Content-type')
+</code></pre><h3>Add events</h3><p>Events can be added to the collection level or the item level. This means that if you add it at the collection level or the item level. If added to the collection, any request item on that collection can trigger, otherwise only the item you add to it will trigger.</p>
+<pre class="prettyprint source"><code>
+collection.event.add({
+name: 'My Script',
+listen: 'prerequest', // This is the default value and could be omitted
+disabled: false,
+type: 'text/javascript', // Also the default value and could be omitted
+exec: ['console.log('MY LOG!')', 'ANY JAVASCRIPT SCRIPT'], // Provide either the exec or source property, never both, only added here for demonstration, see below for source example.
 })
 
 // Lets add one to an item:
 const item = collection.find('test-endpoint-2')
 item.event.add({
-    name: 'My Script',
-    listen: 'prerequest', // This is the default value and could be omitted
-    disabled: false,
-    type: 'text/javascript', // Also the default value and could be omitted
-    source: 'http://myhost.com/myscript.js'
+name: 'My Script',
+listen: 'prerequest', // This is the default value and could be omitted
+disabled: false,
+type: 'text/javascript', // Also the default value and could be omitted
+source: 'http://myhost.com/myscript.js'
 })
 
 // You can also use any methods available for the item it self
 item.event.find('Content-type')
 item.event.has('Content-type')
 item.event.findIndex('Content-type')
-item.event.remove('Content-type')</code></pre><p><br><br></p>
+item.event.remove('Content-type')
+
+`</code></pre><h2><a href="#full-docs">Full Documentation</a></h2><p>You can also find a more detailed documentation with each method and class available here:
+<a href="https://layoutzweb.github.io/postman-sdk/postman-sdk/1.3.0/Client.html">Postman SDK Documentaion Page</a></p>
+<h2><a href="#official-docs">Official Api Docs</a></h2><p>Used as reference for the development of this SDK.
+<a href="https://docs.api.getpostman.com">Official Api Docs</a></p>
 <h1><a href="#tests">Tests</a></h1><p>Assuming you have cloned this repo and have dependencies installed by running <code>npm install</code>, run:  </p>
-<pre class="prettyprint source lang-javascript"><code>npm run jest  </code></pre><p><br><br></p>
-<h1><a href="#Collaboration">Contributions</a></h1><p>If you like the SDK and found bug's, or have suggestions on how we could improve it please submit your pull requests. I will consider all suggestions. One rule, make sure you have tests included! Cheers!<br><br><br></p>
+<pre class="prettyprint source lang-javascript"><code>npm run jest  
+`</code></pre><h1><a href="#Collaboration">Contributions</a></h1><p>If you like the SDK and found bug's, or have suggestions on how we could improve it please submit your pull requests. I will consider all suggestions. One rule, make sure you have tests included! Cheers!  </p>
 <h1><a href="#license">License</a></h1><pre class="prettyprint source"><code>MIT License  
 
 Permission is hereby granted, free of charge, to any person obtaining a copy  
@@ -265,9 +267,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
-SOFTWARE.  
-</code></pre><p><br><br></p>
-<h1>Official Api Docs</h1><p><a href="https://docs.api.getpostman.com">Official Api Docs</a></p>
+SOFTWARE.  </code></pre>
     </article>
   </section>
 
