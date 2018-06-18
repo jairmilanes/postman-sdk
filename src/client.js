@@ -1,4 +1,7 @@
 import { requestFactory } from './helper/util'
+import debug from 'debug'
+
+const log = debug('postman-sdk:client')
 
 /**
  * A promise based REST api client to interact with Postman Cloud servers to create and update your collections, environments, mocks & monitors.
@@ -42,7 +45,7 @@ import { requestFactory } from './helper/util'
  * client.put(collectionId, collection.toJSON())
  *      .then(response => console.log(response))
  */
-class Client {
+export default class Client {
 	/**
 	 * The api target
 	 * @type {string}
@@ -72,6 +75,8 @@ class Client {
 				'You must provide an api key in order to make requests ti the Postman Cloud. Either provide it as a parameter to this client or set the POSTMAN_API_KEY environment variable.'
 			)
 		}
+
+		log('client:ready %s|%s', target, this.apiKey)
 	}
 
 	/**
@@ -157,5 +162,3 @@ class Client {
 		return requestFactory('DELETE', this.target, this.apiKey)(id)
 	}
 }
-
-export default Client

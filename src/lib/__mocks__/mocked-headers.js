@@ -1,19 +1,26 @@
-export const HEADER_1 = {
+const HEADER_1 = {
 	key: 'Content-Type',
 	value: 'application/json'
 }
 
-export const HEADER_2 = {
+const HEADER_2 = {
 	key: 'Accept',
 	value: 'application/json'
 }
 
-export const HEADER_3 = {
+const HEADER_3 = {
 	key: 'Authorization',
 	value: 'Bearer {{TOKEN}}'
 }
 
-export const DUMMY_HEADER = {
+const DUMMY_HEADER = {
 	key: 'Fake Header',
 	value: 'Fake value'
+}
+
+module.exports = {
+	HEADER_1,
+	HEADER_2,
+	HEADER_3,
+	DUMMY_HEADER
 }

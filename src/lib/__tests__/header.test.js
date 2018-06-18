@@ -13,41 +13,41 @@ describe('Request Headers:', () => {
 	const item = collection.item.find(ITEM_1.name)
 
 	describe('Create New Item with Headers', () => {
-		expect(typeof item.request.headers.add).toEqual('function')
-		expect(typeof item.request.headers.findIndex).toEqual('function')
-		expect(typeof item.request.headers.findWith).toEqual('function')
-		expect(typeof item.request.headers.findBy).toEqual('function')
-		expect(typeof item.request.headers.find).toEqual('function')
-		expect(typeof item.request.headers.has).toEqual('function')
-		expect(typeof item.request.headers.removeFrom).toEqual('function')
-		expect(typeof item.request.headers.remove).toEqual('function')
+		expect(typeof item.request.header.add).toEqual('function')
+		expect(typeof item.request.header.findIndex).toEqual('function')
+		expect(typeof item.request.header.findWith).toEqual('function')
+		expect(typeof item.request.header.findBy).toEqual('function')
+		expect(typeof item.request.header.find).toEqual('function')
+		expect(typeof item.request.header.has).toEqual('function')
+		expect(typeof item.request.header.removeFrom).toEqual('function')
+		expect(typeof item.request.header.remove).toEqual('function')
 	})
 
 	describe('Operations: ', () => {
 		it('Should add new headers', () => {
-			item.request.headers.add(HEADER_1)
-			item.request.headers.add(HEADER_2)
-			item.request.headers.add(HEADER_3.key, HEADER_3.value)
-			expect(item.request.headers.toJSON()).toHaveLength(3)
+			item.request.header.add(HEADER_1)
+			item.request.header.add(HEADER_2)
+			item.request.header.add(HEADER_3.key, HEADER_3.value)
+			expect(item.request.header.toJSON()).toHaveLength(3)
 		})
 
 		it('Should find a header', () => {
-			expect(item.request.headers.find(HEADER_2.key)).toMatchObject(
+			expect(item.request.header.find(HEADER_2.key)).toMatchObject(
 				HEADER_2
 			)
 		})
 
 		it('Should NOT find a header', () => {
-			expect(item.request.headers.find(DUMMY_HEADER.key)).toBeNull()
+			expect(item.request.header.find(DUMMY_HEADER.key)).toBeNull()
 		})
 
 		it('Should remove headers', () => {
-			item.request.headers.remove(HEADER_1.key)
-			item.request.headers.remove(HEADER_2.key)
-			expect(item.request.headers.toJSON()).toHaveLength(1)
-			expect(item.request.headers.find(HEADER_2.key)).toBeNull()
-			expect(item.request.headers.find(HEADER_1.key)).toBeNull()
-			expect(item.request.headers.find(HEADER_3.key)).toMatchObject(
+			item.request.header.remove(HEADER_1.key)
+			item.request.header.remove(HEADER_2.key)
+			expect(item.request.header.toJSON()).toHaveLength(1)
+			expect(item.request.header.find(HEADER_2.key)).toBeNull()
+			expect(item.request.header.find(HEADER_1.key)).toBeNull()
+			expect(item.request.header.find(HEADER_3.key)).toMatchObject(
 				HEADER_3
 			)
 		})

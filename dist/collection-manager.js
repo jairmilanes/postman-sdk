@@ -104,15 +104,21 @@ var CollectionManager = (function() {
 	 */
 
 	/**
-	 * The collection items manager.
-	 * Use this member to add, find & remove events/scripts to your collection
-	 * @type {EventsManager}
-	 */
-
-	/**
 	 * The collection info like name and version
 	 * @type {CollectionInfo}
 	 * @private
+	 */
+
+	/**
+	 * The collection items manager.
+	 * Use this member to add, find & remove request items from your collection
+	 * @type {ItemsManager}
+	 */
+
+	/**
+	 * The collection items manager.
+	 * Use this member to add, find & remove events/scripts to your collection
+	 * @type {EventsManager}
 	 */
 	function CollectionManager(name, version) {
 		;(0, _classCallCheck3.default)(this, CollectionManager)
@@ -139,12 +145,6 @@ var CollectionManager = (function() {
 	 * The variables array.
 	 * Use this member to add, find & remove variables from your collection
 	 * @type {object[]}
-	 */
-
-	/**
-	 * The collection items manager.
-	 * Use this member to add, find & remove request items from your collection
-	 * @type {ItemsManager}
 	 */
 
 	;(0, _createClass3.default)(CollectionManager, [

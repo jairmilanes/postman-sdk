@@ -88,7 +88,7 @@ function _interopRequireDefault(obj) {
  * @property {number} request.url.port The request port (eg: 3000)
  * @property {number} request.url.query The query parameters to be sent in case of GET requests (eg: {uid: '[uid]'})
  * @property {object[]} request.url.variables The request variables
- * @property {object} response The request headers object
+ * @property {object[]} response The response array
  * @property {Event[]} event The request protocol
  */
 
@@ -195,10 +195,10 @@ var ItemsManager = (function(_Operations) {
 						}
 
 						if (
-							clone.request.headers instanceof
+							clone.request.header instanceof
 							_headersManager2.default
 						) {
-							clone.request.headers = clone.request.headers.toJSON()
+							clone.request.header = clone.request.header.toJSON()
 						}
 
 						return clone
@@ -252,22 +252,22 @@ var getItem = function getItem(name, props) {
 		name: name,
 		request: {
 			method: (method || 'get').toUpperCase(),
-			headers: new _headersManager2.default(headers),
+			header: new _headersManager2.default(headers),
 			body: body || {},
 			url: {}
 		},
-		response: response || {}
+		response: response || []
 	}
 
 	if ((0, _util.isUrl)(path)) {
 		var urlObject = _url2.default.parse(path)
 		item.request.url = {
 			path: urlObject.pathname,
-			host: urlObject.host,
+			host: urlObject.hostname,
 			protocol: urlObject.protocol.replace(':', ''),
 			port: urlObject.port,
 			query: _queryString2.default.parse(urlObject.query || ''),
-			variables: []
+			variable: []
 		}
 	} else {
 		item.request.url = {
@@ -275,8 +275,8 @@ var getItem = function getItem(name, props) {
 			host: host,
 			protocol: protocol || 'http',
 			port: port,
-			query: query || {},
-			variables: []
+			query: query || [],
+			variable: []
 		}
 	}
 

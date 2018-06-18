@@ -13,6 +13,10 @@ var _assign = require('babel-runtime/core-js/object/assign')
 
 var _assign2 = _interopRequireDefault(_assign)
 
+var _stringify = require('babel-runtime/core-js/json/stringify')
+
+var _stringify2 = _interopRequireDefault(_stringify)
+
 var _typeof2 = require('babel-runtime/helpers/typeof')
 
 var _typeof3 = _interopRequireDefault(_typeof2)
@@ -21,9 +25,15 @@ var _request = require('request')
 
 var _request2 = _interopRequireDefault(_request)
 
+var _debug = require('debug')
+
+var _debug2 = _interopRequireDefault(_debug)
+
 function _interopRequireDefault(obj) {
 	return obj && obj.__esModule ? obj : { default: obj }
 }
+
+var log = (0, _debug2.default)('postman-sdk:request')
 
 /**
  * Simple recursive utility
@@ -162,6 +172,11 @@ var callbackFactory = (exports.callbackFactory = function callbackFactory(
 		 * @ignore
 		 */
 		function(error, response, body) {
+			log(
+				'----request:complete %s',
+				(0, _stringify2.default)(error),
+				(0, _stringify2.default)(body)
+			)
 			if (error) {
 				reject(error)
 			}
@@ -207,9 +222,13 @@ var requestFactory = (exports.requestFactory = function requestFactory(
 			id = null
 		}
 
+		var options = getOptions(method, target, params, id, apiKey)
+
+		log('----request:%s %s', method, (0, _stringify2.default)(options))
+
 		return new _promise2.default(function(resolve, reject) {
 			_request2.default[method.toLowerCase()](
-				getOptions(method, target, params, id, apiKey),
+				options,
 				callbackFactory(resolve, reject)
 			)
 		})

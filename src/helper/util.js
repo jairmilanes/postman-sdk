@@ -1,4 +1,7 @@
 import client from 'request'
+import debug from 'debug'
+
+const log = debug('postman-sdk:request')
 
 /**
  * Simple recursive utility
@@ -115,6 +118,11 @@ export const callbackFactory = (resolve, reject) =>
 	 * @ignore
 	 */
 	(error, response, body) => {
+		log(
+			'----request:complete %s',
+			JSON.stringify(error),
+			JSON.stringify(body)
+		)
 		if (error) {
 			reject(error)
 		}
@@ -145,9 +153,13 @@ export const requestFactory = (method, target, apiKey) => {
 			id = null
 		}
 
+		const options = getOptions(method, target, params, id, apiKey)
+
+		log('----request:%s %s', method, JSON.stringify(options))
+
 		return new Promise((resolve, reject) => {
 			client[method.toLowerCase()](
-				getOptions(method, target, params, id, apiKey),
+				options,
 				callbackFactory(resolve, reject)
 			)
 		})

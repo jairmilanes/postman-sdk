@@ -21,7 +21,7 @@ import Operations from './lib/operations'
  *
  * @extends Operations
  */
-class EnvironmentManager extends Operations {
+export default class EnvironmentManager extends Operations {
 	/**
 	 * @type {string}
 	 * @ignore
@@ -92,5 +92,3 @@ class EnvironmentManager extends Operations {
 		}
 	}
 }
-
-export default EnvironmentManager

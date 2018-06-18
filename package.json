@@ -5,7 +5,7 @@
 		"A Postman SDK that provides helpers to create collections & environments and to communicate with the latest Postman REST api.",
 	"homepage": "https://github.com/layoutzweb/postman-sdk",
 	"repository": "https://github.com/layoutzweb/postman-sdk",
-	"main": "dist/index.js",
+	"main": "dist",
 	"scripts": {
 		"lint:js": "eslint lib",
 		"lint:js:fix": "eslint lib --fix",
@@ -20,7 +20,6 @@
 		"pretty":
 			"prettier --config ./.prettierrc.yml --write \"{src,__{tests,mocks}__}/**/*.js\"",
 		"docs": "jsdoc src -r -c jsdoc.json -d docs --verbose",
-		"docco": "docco -o docco src/**/*.js",
 		"release:major":
 			"changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
 		"release:minor":
@@ -79,6 +78,7 @@
 		"regenerator-runtime": "^0.11.1"
 	},
 	"dependencies": {
+		"debug": "^3.1.0",
 		"is-uuid": "^1.0.2",
 		"lodash.clonedeep": "^4.5.0",
 		"query-string": "^6.0.0",
@@ -88,6 +88,7 @@
 	"engines": {
 		"node": ">=6.9.5"
 	},
+	"directories": {},
 	"publishConfig": {
 		"allow-same-version": false,
 		"git-tag-version": true

@@ -14,9 +14,15 @@ var _createClass3 = _interopRequireDefault(_createClass2)
 
 var _util = require('./helper/util')
 
+var _debug = require('debug')
+
+var _debug2 = _interopRequireDefault(_debug)
+
 function _interopRequireDefault(obj) {
 	return obj && obj.__esModule ? obj : { default: obj }
 }
+
+var log = (0, _debug2.default)('postman-sdk:client')
 
 /**
  * A promise based REST api client to interact with Postman Cloud servers to create and update your collections, environments, mocks & monitors.
@@ -60,6 +66,7 @@ function _interopRequireDefault(obj) {
  * client.put(collectionId, collection.toJSON())
  *      .then(response => console.log(response))
  */
+
 var Client = (function() {
 	/**
 	 * Create a new Api Instance
@@ -84,6 +91,8 @@ var Client = (function() {
 				'You must provide an api key in order to make requests ti the Postman Cloud. Either provide it as a parameter to this client or set the POSTMAN_API_KEY environment variable.'
 			)
 		}
+
+		log('client:ready %s|%s', target, this.apiKey)
 	}
 
 	/**

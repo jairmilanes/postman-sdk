@@ -2,26 +2,24 @@
   "presets": [
     ["env", {
       "targets": {
-        "node": "6.1.0"
+        "node": "6.9.5"
       },
       "modules": false,
       "debug": false
     }],
-    "es2015", "stage-0", "jest"
+    "es2015",
+    "stage-0"
   ],
   "env": {
     "test": {
       "presets": [["env", {
         "targets": {
-          "node": "6.1.0"
-        },
-        "debug": false
-      }], "es2015", "stage-0", "jest"],
-      "plugins": ["transform-es2015-modules-commonjs"]
+          "node": "6.9.5"
+        }
+      }]]
     }
-
   },
-  "ignore": ["node_modules"],
+  "ignore": ["node_modules", "examples", "media", "docs", "coverage", "__mocks__"],
   "plugins": [
     "syntax-async-functions",
     "syntax-dynamic-import",

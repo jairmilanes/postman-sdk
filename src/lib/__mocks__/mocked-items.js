@@ -1,17 +1,17 @@
-import getUuidByString from 'uuid-by-string'
+const getUuidByString = require('uuid-by-string')
 
 const name1 = 'test-endpoint'
 const name2 = 'test-endpoint-2'
 const name3 = 'test-endpoint-3'
 const name4 = 'test-endpoint-4'
 
-export const ITEM_1 = {
+const ITEM_1 = {
 	id: getUuidByString('GET' + name1),
 	name: name1,
 	props: {
 		path: 'http://testurl.com/test-endpoint?test=1',
 		method: 'GET',
-		headers: [
+		header: [
 			{ key: 'Content-type', value: 'application/json' },
 			{ key: 'Test-header', value: 'test-header-value' }
 		],
@@ -25,7 +25,7 @@ export const ITEM_1 = {
 	}
 }
 
-export const ITEM_2 = {
+const ITEM_2 = {
 	id: getUuidByString('POST' + name2),
 	name: name2,
 	props: {
@@ -34,7 +34,7 @@ export const ITEM_2 = {
 	}
 }
 
-export const ITEM_3 = {
+const ITEM_3 = {
 	id: getUuidByString('PATCH' + name3),
 	name: name3,
 	props: {
@@ -47,7 +47,7 @@ export const ITEM_3 = {
 	}
 }
 
-export const ITEM_4 = {
+const ITEM_4 = {
 	id: getUuidByString('DELETE' + name4),
 	name: name4,
 	props: {
@@ -56,4 +56,11 @@ export const ITEM_4 = {
 		protocol: 'http',
 		host: 'localhost'
 	}
+}
+
+module.exports = {
+	ITEM_1,
+	ITEM_2,
+	ITEM_3,
+	ITEM_4
 }

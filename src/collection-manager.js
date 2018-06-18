@@ -72,7 +72,7 @@ import EventsManager from './lib/events-manager'
  *
  * @extends Operations
  */
-class CollectionManager {
+export default class CollectionManager {
 	/**
 	 * The collection info like name and version
 	 * @type {CollectionInfo}
@@ -136,5 +136,3 @@ class CollectionManager {
 		}
 	}
 }
-
-export default CollectionManager

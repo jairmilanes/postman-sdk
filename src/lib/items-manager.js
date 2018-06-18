@@ -35,7 +35,7 @@ import { isUrl } from '../helper/util'
  * @property {number} request.url.port The request port (eg: 3000)
  * @property {number} request.url.query The query parameters to be sent in case of GET requests (eg: {uid: '[uid]'})
  * @property {object[]} request.url.variables The request variables
- * @property {object} response The request headers object
+ * @property {object[]} response The response array
  * @property {Event[]} event The request protocol
  */
 
@@ -117,8 +117,8 @@ class ItemsManager extends Operations {
 					clone.event = clone.event.toJSON()
 				}
 
-				if (clone.request.headers instanceof HeadersManager) {
-					clone.request.headers = clone.request.headers.toJSON()
+				if (clone.request.header instanceof HeadersManager) {
+					clone.request.header = clone.request.header.toJSON()
 				}
 
 				return clone
@@ -168,22 +168,22 @@ const getItem = (name, props) => {
 		name: name,
 		request: {
 			method: (method || 'get').toUpperCase(),
-			headers: new HeadersManager(headers),
+			header: new HeadersManager(headers),
 			body: body || {},
 			url: {}
 		},
-		response: response || {}
+		response: response || []
 	}
 
 	if (isUrl(path)) {
 		const urlObject = url.parse(path)
 		item.request.url = {
 			path: urlObject.pathname,
-			host: urlObject.host,
+			host: urlObject.hostname,
 			protocol: urlObject.protocol.replace(':', ''),
 			port: urlObject.port,
 			query: queryString.parse(urlObject.query || ''),
-			variables: []
+			variable: []
 		}
 	} else {
 		item.request.url = {
@@ -191,8 +191,8 @@ const getItem = (name, props) => {
 			host: host,
 			protocol: protocol || 'http',
 			port: port,
-			query: query || {},
-			variables: []
+			query: query || [],
+			variable: []
 		}
 	}
 

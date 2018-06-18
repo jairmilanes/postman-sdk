@@ -53,7 +53,7 @@ describe('Collection Item:', () => {
 		it('should contain a request object', () => {
 			expect(Object.keys(item.request)).toMatchObject([
 				'method',
-				'headers',
+				'header',
 				'body',
 				'url'
 			])
@@ -61,14 +61,7 @@ describe('Collection Item:', () => {
 
 		it('should contain a url object', () => {
 			expect(Object.keys(item.request.url).sort()).toMatchObject(
-				[
-					'path',
-					'host',
-					'port',
-					'protocol',
-					'query',
-					'variables'
-				].sort()
+				['path', 'host', 'port', 'protocol', 'query', 'variable'].sort()
 			)
 		})
 
@@ -81,7 +74,7 @@ describe('Collection Item:', () => {
 				query: {
 					test: '1'
 				},
-				variables: []
+				variable: []
 			})
 		})
 	})

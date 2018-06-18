@@ -1,13 +1,6 @@
 /** @ignore */
+const Client = require('./client').default
+const CollectionManager = require('./collection-manager').default
+const EnvironmentManager = require('./environment-manager').default
 
-import Client from './client'
-import CollectionManager from './collection-manager'
-import EnvironmentManager from './environment-manager'
-
-const PostmanSdk = {
-	Client,
-	CollectionManager,
-	EnvironmentManager
-}
-
-export default PostmanSdk
+export { Client, CollectionManager, EnvironmentManager }
