@@ -62,7 +62,7 @@ export default class EnvironmentManager extends Operations {
 	 * })
 	 *
 	 * @param {string|object} key The variable name or the variable object. If object is provided, ignore value
-	 * @param {string} [value] The variable value, ig object was provided as the first parameter, this can be ignored
+	 * @param {*} [value] The variable value, ig object was provided as the first parameter, this can be ignored
 	 * @param {string} [type] The variable type (string, number, boolean)
 	 * @param {boolean} [enabled] A flag tallying if the variable is enabled or disabled by default
 	 * @returns {number}
@@ -71,6 +71,19 @@ export default class EnvironmentManager extends Operations {
 		if (typeof key !== 'string') {
 			return this.array.push(key)
 		}
+
+		if (value === null) {
+			value = ''
+		}
+
+		value = value.toString()
+
+		if (!type) {
+			type = 'string'
+		}
+
+		enabled = enabled === true
+
 		return this.array.push({ key, value, type, enabled })
 	}
 
