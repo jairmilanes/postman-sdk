@@ -28,7 +28,6 @@
     "transform-object-rest-spread",
     "transform-async-to-module-method",
     "transform-regenerator",
-    "babel-plugin-transform-ensure-ignore",
-    "transform-runtime"
+    "babel-plugin-transform-ensure-ignore"
   ]
 }
